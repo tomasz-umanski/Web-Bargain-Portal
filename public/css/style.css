@@ -1,55 +1,86 @@
-body {
-    background-color: wheat;
-    height: 100vh;
-    width: 100vw;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+    padding: 0;
     margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
-
-.flex-row-center-center {
+body{
+    background: #4D47C3;
+}
+@media (max-width: 765px) {
+    body{
+        background: white;
+    }
+}
+.container{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    min-height: 90vh;
 }
-
-.flex-column-center-center {
+.box{
+    background: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 30px 30px;
+    border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-
-.container {
-    background-color: whitesmoke;
-    border-radius: 1em;
-    padding: 1em;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+@media (max-width: 765px) {
+    .box{
+        box-shadow: none;
+    }
 }
-
-form {
-    gap: 1.5em;
+.form-box{
+    width: 450px;
+    margin: 0px 10px;
 }
-
-form > input, form > button, form > textarea {
-    border: 0 solid black;
-    border-radius: 1em;
-    padding: 1em;
-    width: 400px;
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-}
-
-button {
-    box-sizing: content-box;
-    background-color: violet;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px !important;
+.form-box header{
+    font-size: 26px;
     font-weight: 600;
-}
-
-nav {
-    background-color: white;
-    width: 100vw;
-    height: 100vh;
-    justify-content: start !important;
-    padding: 0.1em;
     
-
+}
+.links {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+a{
+    color: #4D47C3;
+}
+a:hover{
+    opacity: 0.7;
+}
+.form-box form .field{
+    display: flex;
+    margin-bottom: 20px;
+    flex-direction: column;
+    border-radius: 15px;
+}
+.form-box form .input input{
+    height: 60px;
+    width: 100%;
+    border-radius: 8px;
+    border: 0px;
+    background: #F0EFFF;
+    font-size: 16px;
+    padding: 0 10px;
+}
+.form-box form .input input::placeholder{
+    color: #A7A3FF;
+}
+.button{
+    height: 60px;
+    border-radius: 8px;
+    border: 0px;
+    background: #4D47C3;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    color: white;
+    font-size: 16px;
+}
+.button:hover{
+    opacity: 0.7;
+}
+.submit{
+    width: 100%;
 }
