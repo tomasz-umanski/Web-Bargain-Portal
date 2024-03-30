@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-*{
-    padding: 0;
+* {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
-body{
+body {
     background: #4D47C3;
 }
 @media (max-width: 765px) {
@@ -39,21 +39,21 @@ body{
 .form-box header{
     font-size: 26px;
     font-weight: 600;
-    
 }
 .links {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-size: 16px;
 }
-a{
+.form-box a{
     color: #4D47C3;
 }
-a:hover{
+.form-box a:hover{
     opacity: 0.7;
 }
 .form-box form .field{
+    position: relative;
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     flex-direction: column;
     border-radius: 15px;
 }
@@ -64,7 +64,16 @@ a:hover{
     border: 0px;
     background: #F0EFFF;
     font-size: 16px;
-    padding: 0 10px;
+    padding-left: 10px;
+    padding-right: 30px;
+}
+.form-box form .field .password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    cursor: pointer;
+    color: #A7A3FF;
 }
 .form-box form .input input::placeholder{
     color: #A7A3FF;
@@ -73,8 +82,8 @@ a:hover{
     height: 60px;
     border-radius: 8px;
     border: 0px;
-    background: #4D47C3;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background: rgb(77, 71, 195);
+    box-shadow: rgba(77, 71, 195, 0.65) 0px 5px 30px;
     color: white;
     font-size: 16px;
 }

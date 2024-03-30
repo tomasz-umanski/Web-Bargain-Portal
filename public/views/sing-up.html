@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="./public/js/authentication.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <title>Sing up</title>
 </head>
@@ -27,10 +29,12 @@
 
                 <div class="field input">
                     <input type="password" name="password" id="password" placeholder="Password" required>
+                    <span class="password-toggle-icon"><i name="password_toggle" class="bi bi-eye-slash-fill"></i></span>
                 </div>
 
                 <div class="field input">
                     <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" required>
+                    <span class="password-toggle-icon"><i name="confirm_password_toggle" class="bi bi-eye-slash-fill"></i></span>
                 </div>
             
                 <div class="field">
