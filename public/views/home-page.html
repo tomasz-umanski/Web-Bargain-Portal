@@ -16,12 +16,12 @@
                         <span class="navbar-icon"><i class="bi bi-house"></i></span>
                         <span class="navbar-label">Home</span>
                     </a>
-                    <div class="navbar-dropdown">
+                    <div class="dropdown">
                         <button class="navbar-button dropdown-button" name="categories" onclick="toggleDropdown('categories')">
                             <span class="navbar-icon"><i class="bi bi-columns-gap"></i></span>
                             <span class="navbar-label">Categories</span>
                         </button>
-                        <div id="categories_dropdown" class="navbar-dropdown-content">
+                        <div id="categories_dropdown" class="dropdown-content">
                             <a href="#" class="dropdown-link"> 
                                 <span class="dropdown-icon"><i class="bi bi-laptop"></i></span>
                                 <span>Technology</span>
@@ -47,12 +47,12 @@
                         <span class="navbar-label">New post</span>
                     </a>
 
-                    <div class="navbar-dropdown">
+                    <div class="dropdown">
                         <button class="navbar-button dropdown-button" name="account" onclick="toggleDropdown('account')">
                             <span class="navbar-icon"><i class="bi bi-person"></i></span>
                             <span class="navbar-label">Account</span>
                         </button>
-                        <div id="account_dropdown" class="navbar-dropdown-content account-dropdown">
+                        <div id="account_dropdown" class="dropdown-content account-dropdown">
                             <a href="#" class="dropdown-link"> 
                                 <span class="dropdown-icon"><i class="bi bi-laptop"></i></span>
                                 <span>Technology</span>
@@ -69,18 +69,16 @@
 
         <div class="subnav">
             <div class="subnav-container">
-                <div class="navbar-dropdown">
-                    <button class="navbar-button dropdown-button" name="categories" onclick="toggleDropdown('test')">
-                        <span class="navbar-icon"><i class="bi bi-columns-gap"></i></span>
-                        <span class="navbar-label">Categories</span>
+                <div class="dropdown">
+                    <button class="dropdown-button" name="subnavDropdown" onclick="toggleDropdown('subnav')">
+                        <span class="subnav-label">Hot</span>
+                        <span><i class="bi bi-caret-down-fill"></i></span>
                     </button>
-                    <div id="test_dropdown" class="navbar-dropdown-content">
+                    <div id="subnav_dropdown" class="dropdown-content">
                         <a href="#" class="dropdown-link"> 
-                            <span class="dropdown-icon"><i class="bi bi-laptop"></i></span>
                             <span>Technology</span>
                         </a>
                         <a href="#" class="dropdown-link"> 
-                            <span class="dropdown-icon"><i class="bi bi-controller"></i></span>
                             <span>Gaming</span>
                         </a>
                     </div>
@@ -88,62 +86,134 @@
             </div>
         </div>
 
-        <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit fringilla malesuada. Donec ultricies nisi eget enim efficitur pharetra. Etiam pellentesque blandit convallis. Phasellus mi turpis, condimentum feugiat scelerisque at, tempus ac turpis. Donec et tortor sed sem pulvinar venenatis ac vitae purus. Maecenas ac eros vulputate, vehicula purus quis, malesuada lectus. Donec euismod mauris ultrices pretium dignissim. Fusce tortor est, laoreet ut ullamcorper quis, consequat ac eros. Maecenas quam magna, semper quis dolor sed, luctus aliquet sem. Suspendisse potenti. Proin pretium dapibus vulputate. Morbi ornare nunc id egestas feugiat. In eget nunc elementum, cursus diam ultrices, bibendum ipsum.
-
-            Etiam facilisis gravida ultrices. Quisque urna velit, tincidunt eu orci et, placerat placerat lacus. Morbi vitae magna malesuada, laoreet lacus non, tristique urna. Maecenas volutpat urna eget ligula interdum, ut vestibulum erat interdum. Etiam feugiat quam eget ex dapibus imperdiet. Proin ut fringilla tortor, nec semper velit. Morbi consequat id nisl quis luctus. Etiam placerat ligula a eros aliquet interdum. Vivamus at dictum lacus.
-            
-            Nulla nec nisl lacus. Nulla faucibus, enim et faucibus semper, eros ligula sodales est, ac placerat nisi tellus vel sapien. Donec et libero faucibus, suscipit lacus eget, aliquam massa. Aliquam faucibus posuere fermentum. Etiam mi diam, suscipit non magna sit amet, eleifend tincidunt orci. Mauris eget sapien pulvinar, fermentum diam et, dictum nunc. Vestibulum scelerisque fringilla felis, vel hendrerit mauris suscipit vel. Mauris ultrices lorem ac eros eleifend, nec convallis est maximus.
-            
-            Praesent placerat turpis auctor, lacinia tortor ac, tempus lacus. Nullam sed nulla porta, dictum leo ut, aliquam justo. Cras odio odio, pellentesque vitae blandit non, fermentum eget massa. Fusce efficitur mauris sed tellus convallis, vel aliquam felis vehicula. Curabitur tempor faucibus elit, eu congue est porta ut. Nulla in nulla quis nibh gravida blandit vel id turpis. Suspendisse potenti. Pellentesque aliquam libero metus, quis ullamcorper magna tincidunt id. Quisque est ligula, venenatis quis justo sit amet, ullamcorper tempor felis. Phasellus eget placerat nibh, id tincidunt lectus. In sit amet ante id orci luctus blandit. Donec hendrerit at risus quis egestas. Suspendisse euismod nibh nisl, vel sollicitudin ligula egestas vitae. Phasellus laoreet et arcu nec rhoncus. Ut vel nisl ligula. Quisque libero arcu, rutrum ut urna sed, molestie fermentum arcu.
-            
-            Sed leo massa, commodo non porta at, euismod sed nisi. Vivamus pharetra gravida aliquet. Etiam feugiat faucibus ante, elementum suscipit ipsum efficitur nec. Fusce tincidunt odio sed lacus faucibus, ac condimentum lectus tincidunt. Curabitur elit orci, pulvinar vel ullamcorper eget, dignissim ac tellus. Nam rutrum sodales interdum. Morbi in justo at nunc condimentum faucibus a quis nunc. Integer in turpis eu massa vehicula ultricies. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit fringilla malesuada. Donec ultricies nisi eget enim efficitur pharetra. Etiam pellentesque blandit convallis. Phasellus mi turpis, condimentum feugiat scelerisque at, tempus ac turpis. Donec et tortor sed sem pulvinar venenatis ac vitae purus. Maecenas ac eros vulputate, vehicula purus quis, malesuada lectus. Donec euismod mauris ultrices pretium dignissim. Fusce tortor est, laoreet ut ullamcorper quis, consequat ac eros. Maecenas quam magna, semper quis dolor sed, luctus aliquet sem. Suspendisse potenti. Proin pretium dapibus vulputate. Morbi ornare nunc id egestas feugiat. In eget nunc elementum, cursus diam ultrices, bibendum ipsum.
-
-            Etiam facilisis gravida ultrices. Quisque urna velit, tincidunt eu orci et, placerat placerat lacus. Morbi vitae magna malesuada, laoreet lacus non, tristique urna. Maecenas volutpat urna eget ligula interdum, ut vestibulum erat interdum. Etiam feugiat quam eget ex dapibus imperdiet. Proin ut fringilla tortor, nec semper velit. Morbi consequat id nisl quis luctus. Etiam placerat ligula a eros aliquet interdum. Vivamus at dictum lacus.
-            
-            Nulla nec nisl lacus. Nulla faucibus, enim et faucibus semper, eros ligula sodales est, ac placerat nisi tellus vel sapien. Donec et libero faucibus, suscipit lacus eget, aliquam massa. Aliquam faucibus posuere fermentum. Etiam mi diam, suscipit non magna sit amet, eleifend tincidunt orci. Mauris eget sapien pulvinar, fermentum diam et, dictum nunc. Vestibulum scelerisque fringilla felis, vel hendrerit mauris suscipit vel. Mauris ultrices lorem ac eros eleifend, nec convallis est maximus.
-            
-            Praesent placerat turpis auctor, lacinia tortor ac, tempus lacus. Nullam sed nulla porta, dictum leo ut, aliquam justo. Cras odio odio, pellentesque vitae blandit non, fermentum eget massa. Fusce efficitur mauris sed tellus convallis, vel aliquam felis vehicula. Curabitur tempor faucibus elit, eu congue est porta ut. Nulla in nulla quis nibh gravida blandit vel id turpis. Suspendisse potenti. Pellentesque aliquam libero metus, quis ullamcorper magna tincidunt id. Quisque est ligula, venenatis quis justo sit amet, ullamcorper tempor felis. Phasellus eget placerat nibh, id tincidunt lectus. In sit amet ante id orci luctus blandit. Donec hendrerit at risus quis egestas. Suspendisse euismod nibh nisl, vel sollicitudin ligula egestas vitae. Phasellus laoreet et arcu nec rhoncus. Ut vel nisl ligula. Quisque libero arcu, rutrum ut urna sed, molestie fermentum arcu.
-            
-            Sed leo massa, commodo non porta at, euismod sed nisi. Vivamus pharetra gravida aliquet. Etiam feugiat faucibus ante, elementum suscipit ipsum efficitur nec. Fusce tincidunt odio sed lacus faucibus, ac condimentum lectus tincidunt. Curabitur elit orci, pulvinar vel ullamcorper eget, dignissim ac tellus. Nam rutrum sodales interdum. Morbi in justo at nunc condimentum faucibus a quis nunc. Integer in turpis eu massa vehicula ultricies. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit fringilla malesuada. Donec ultricies nisi eget enim efficitur pharetra. Etiam pellentesque blandit convallis. Phasellus mi turpis, condimentum feugiat scelerisque at, tempus ac turpis. Donec et tortor sed sem pulvinar venenatis ac vitae purus. Maecenas ac eros vulputate, vehicula purus quis, malesuada lectus. Donec euismod mauris ultrices pretium dignissim. Fusce tortor est, laoreet ut ullamcorper quis, consequat ac eros. Maecenas quam magna, semper quis dolor sed, luctus aliquet sem. Suspendisse potenti. Proin pretium dapibus vulputate. Morbi ornare nunc id egestas feugiat. In eget nunc elementum, cursus diam ultrices, bibendum ipsum.
-
-            Etiam facilisis gravida ultrices. Quisque urna velit, tincidunt eu orci et, placerat placerat lacus. Morbi vitae magna malesuada, laoreet lacus non, tristique urna. Maecenas volutpat urna eget ligula interdum, ut vestibulum erat interdum. Etiam feugiat quam eget ex dapibus imperdiet. Proin ut fringilla tortor, nec semper velit. Morbi consequat id nisl quis luctus. Etiam placerat ligula a eros aliquet interdum. Vivamus at dictum lacus.
-            
-            Nulla nec nisl lacus. Nulla faucibus, enim et faucibus semper, eros ligula sodales est, ac placerat nisi tellus vel sapien. Donec et libero faucibus, suscipit lacus eget, aliquam massa. Aliquam faucibus posuere fermentum. Etiam mi diam, suscipit non magna sit amet, eleifend tincidunt orci. Mauris eget sapien pulvinar, fermentum diam et, dictum nunc. Vestibulum scelerisque fringilla felis, vel hendrerit mauris suscipit vel. Mauris ultrices lorem ac eros eleifend, nec convallis est maximus.
-            
-            Praesent placerat turpis auctor, lacinia tortor ac, tempus lacus. Nullam sed nulla porta, dictum leo ut, aliquam justo. Cras odio odio, pellentesque vitae blandit non, fermentum eget massa. Fusce efficitur mauris sed tellus convallis, vel aliquam felis vehicula. Curabitur tempor faucibus elit, eu congue est porta ut. Nulla in nulla quis nibh gravida blandit vel id turpis. Suspendisse potenti. Pellentesque aliquam libero metus, quis ullamcorper magna tincidunt id. Quisque est ligula, venenatis quis justo sit amet, ullamcorper tempor felis. Phasellus eget placerat nibh, id tincidunt lectus. In sit amet ante id orci luctus blandit. Donec hendrerit at risus quis egestas. Suspendisse euismod nibh nisl, vel sollicitudin ligula egestas vitae. Phasellus laoreet et arcu nec rhoncus. Ut vel nisl ligula. Quisque libero arcu, rutrum ut urna sed, molestie fermentum arcu.
-            
-            Sed leo massa, commodo non porta at, euismod sed nisi. Vivamus pharetra gravida aliquet. Etiam feugiat faucibus ante, elementum suscipit ipsum efficitur nec. Fusce tincidunt odio sed lacus faucibus, ac condimentum lectus tincidunt. Curabitur elit orci, pulvinar vel ullamcorper eget, dignissim ac tellus. Nam rutrum sodales interdum. Morbi in justo at nunc condimentum faucibus a quis nunc. Integer in turpis eu massa vehicula ultricies. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit fringilla malesuada. Donec ultricies nisi eget enim efficitur pharetra. Etiam pellentesque blandit convallis. Phasellus mi turpis, condimentum feugiat scelerisque at, tempus ac turpis. Donec et tortor sed sem pulvinar venenatis ac vitae purus. Maecenas ac eros vulputate, vehicula purus quis, malesuada lectus. Donec euismod mauris ultrices pretium dignissim. Fusce tortor est, laoreet ut ullamcorper quis, consequat ac eros. Maecenas quam magna, semper quis dolor sed, luctus aliquet sem. Suspendisse potenti. Proin pretium dapibus vulputate. Morbi ornare nunc id egestas feugiat. In eget nunc elementum, cursus diam ultrices, bibendum ipsum.
-
-            Etiam facilisis gravida ultrices. Quisque urna velit, tincidunt eu orci et, placerat placerat lacus. Morbi vitae magna malesuada, laoreet lacus non, tristique urna. Maecenas volutpat urna eget ligula interdum, ut vestibulum erat interdum. Etiam feugiat quam eget ex dapibus imperdiet. Proin ut fringilla tortor, nec semper velit. Morbi consequat id nisl quis luctus. Etiam placerat ligula a eros aliquet interdum. Vivamus at dictum lacus.
-            
-            Nulla nec nisl lacus. Nulla faucibus, enim et faucibus semper, eros ligula sodales est, ac placerat nisi tellus vel sapien. Donec et libero faucibus, suscipit lacus eget, aliquam massa. Aliquam faucibus posuere fermentum. Etiam mi diam, suscipit non magna sit amet, eleifend tincidunt orci. Mauris eget sapien pulvinar, fermentum diam et, dictum nunc. Vestibulum scelerisque fringilla felis, vel hendrerit mauris suscipit vel. Mauris ultrices lorem ac eros eleifend, nec convallis est maximus.
-            
-            Praesent placerat turpis auctor, lacinia tortor ac, tempus lacus. Nullam sed nulla porta, dictum leo ut, aliquam justo. Cras odio odio, pellentesque vitae blandit non, fermentum eget massa. Fusce efficitur mauris sed tellus convallis, vel aliquam felis vehicula. Curabitur tempor faucibus elit, eu congue est porta ut. Nulla in nulla quis nibh gravida blandit vel id turpis. Suspendisse potenti. Pellentesque aliquam libero metus, quis ullamcorper magna tincidunt id. Quisque est ligula, venenatis quis justo sit amet, ullamcorper tempor felis. Phasellus eget placerat nibh, id tincidunt lectus. In sit amet ante id orci luctus blandit. Donec hendrerit at risus quis egestas. Suspendisse euismod nibh nisl, vel sollicitudin ligula egestas vitae. Phasellus laoreet et arcu nec rhoncus. Ut vel nisl ligula. Quisque libero arcu, rutrum ut urna sed, molestie fermentum arcu.
-            
-            Sed leo massa, commodo non porta at, euismod sed nisi. Vivamus pharetra gravida aliquet. Etiam feugiat faucibus ante, elementum suscipit ipsum efficitur nec. Fusce tincidunt odio sed lacus faucibus, ac condimentum lectus tincidunt. Curabitur elit orci, pulvinar vel ullamcorper eget, dignissim ac tellus. Nam rutrum sodales interdum. Morbi in justo at nunc condimentum faucibus a quis nunc. Integer in turpis eu massa vehicula ultricies. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit fringilla malesuada. Donec ultricies nisi eget enim efficitur pharetra. Etiam pellentesque blandit convallis. Phasellus mi turpis, condimentum feugiat scelerisque at, tempus ac turpis. Donec et tortor sed sem pulvinar venenatis ac vitae purus. Maecenas ac eros vulputate, vehicula purus quis, malesuada lectus. Donec euismod mauris ultrices pretium dignissim. Fusce tortor est, laoreet ut ullamcorper quis, consequat ac eros. Maecenas quam magna, semper quis dolor sed, luctus aliquet sem. Suspendisse potenti. Proin pretium dapibus vulputate. Morbi ornare nunc id egestas feugiat. In eget nunc elementum, cursus diam ultrices, bibendum ipsum.
-
-            Etiam facilisis gravida ultrices. Quisque urna velit, tincidunt eu orci et, placerat placerat lacus. Morbi vitae magna malesuada, laoreet lacus non, tristique urna. Maecenas volutpat urna eget ligula interdum, ut vestibulum erat interdum. Etiam feugiat quam eget ex dapibus imperdiet. Proin ut fringilla tortor, nec semper velit. Morbi consequat id nisl quis luctus. Etiam placerat ligula a eros aliquet interdum. Vivamus at dictum lacus.
-            
-            Nulla nec nisl lacus. Nulla faucibus, enim et faucibus semper, eros ligula sodales est, ac placerat nisi tellus vel sapien. Donec et libero faucibus, suscipit lacus eget, aliquam massa. Aliquam faucibus posuere fermentum. Etiam mi diam, suscipit non magna sit amet, eleifend tincidunt orci. Mauris eget sapien pulvinar, fermentum diam et, dictum nunc. Vestibulum scelerisque fringilla felis, vel hendrerit mauris suscipit vel. Mauris ultrices lorem ac eros eleifend, nec convallis est maximus.
-            
-            Praesent placerat turpis auctor, lacinia tortor ac, tempus lacus. Nullam sed nulla porta, dictum leo ut, aliquam justo. Cras odio odio, pellentesque vitae blandit non, fermentum eget massa. Fusce efficitur mauris sed tellus convallis, vel aliquam felis vehicula. Curabitur tempor faucibus elit, eu congue est porta ut. Nulla in nulla quis nibh gravida blandit vel id turpis. Suspendisse potenti. Pellentesque aliquam libero metus, quis ullamcorper magna tincidunt id. Quisque est ligula, venenatis quis justo sit amet, ullamcorper tempor felis. Phasellus eget placerat nibh, id tincidunt lectus. In sit amet ante id orci luctus blandit. Donec hendrerit at risus quis egestas. Suspendisse euismod nibh nisl, vel sollicitudin ligula egestas vitae. Phasellus laoreet et arcu nec rhoncus. Ut vel nisl ligula. Quisque libero arcu, rutrum ut urna sed, molestie fermentum arcu.
-            
-            Sed leo massa, commodo non porta at, euismod sed nisi. Vivamus pharetra gravida aliquet. Etiam feugiat faucibus ante, elementum suscipit ipsum efficitur nec. Fusce tincidunt odio sed lacus faucibus, ac condimentum lectus tincidunt. Curabitur elit orci, pulvinar vel ullamcorper eget, dignissim ac tellus. Nam rutrum sodales interdum. Morbi in justo at nunc condimentum faucibus a quis nunc. Integer in turpis eu massa vehicula ultricies. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit fringilla malesuada. Donec ultricies nisi eget enim efficitur pharetra. Etiam pellentesque blandit convallis. Phasellus mi turpis, condimentum feugiat scelerisque at, tempus ac turpis. Donec et tortor sed sem pulvinar venenatis ac vitae purus. Maecenas ac eros vulputate, vehicula purus quis, malesuada lectus. Donec euismod mauris ultrices pretium dignissim. Fusce tortor est, laoreet ut ullamcorper quis, consequat ac eros. Maecenas quam magna, semper quis dolor sed, luctus aliquet sem. Suspendisse potenti. Proin pretium dapibus vulputate. Morbi ornare nunc id egestas feugiat. In eget nunc elementum, cursus diam ultrices, bibendum ipsum.
-
-            Etiam facilisis gravida ultrices. Quisque urna velit, tincidunt eu orci et, placerat placerat lacus. Morbi vitae magna malesuada, laoreet lacus non, tristique urna. Maecenas volutpat urna eget ligula interdum, ut vestibulum erat interdum. Etiam feugiat quam eget ex dapibus imperdiet. Proin ut fringilla tortor, nec semper velit. Morbi consequat id nisl quis luctus. Etiam placerat ligula a eros aliquet interdum. Vivamus at dictum lacus.
-            
-            Nulla nec nisl lacus. Nulla faucibus, enim et faucibus semper, eros ligula sodales est, ac placerat nisi tellus vel sapien. Donec et libero faucibus, suscipit lacus eget, aliquam massa. Aliquam faucibus posuere fermentum. Etiam mi diam, suscipit non magna sit amet, eleifend tincidunt orci. Mauris eget sapien pulvinar, fermentum diam et, dictum nunc. Vestibulum scelerisque fringilla felis, vel hendrerit mauris suscipit vel. Mauris ultrices lorem ac eros eleifend, nec convallis est maximus.
-            
-            Praesent placerat turpis auctor, lacinia tortor ac, tempus lacus. Nullam sed nulla porta, dictum leo ut, aliquam justo. Cras odio odio, pellentesque vitae blandit non, fermentum eget massa. Fusce efficitur mauris sed tellus convallis, vel aliquam felis vehicula. Curabitur tempor faucibus elit, eu congue est porta ut. Nulla in nulla quis nibh gravida blandit vel id turpis. Suspendisse potenti. Pellentesque aliquam libero metus, quis ullamcorper magna tincidunt id. Quisque est ligula, venenatis quis justo sit amet, ullamcorper tempor felis. Phasellus eget placerat nibh, id tincidunt lectus. In sit amet ante id orci luctus blandit. Donec hendrerit at risus quis egestas. Suspendisse euismod nibh nisl, vel sollicitudin ligula egestas vitae. Phasellus laoreet et arcu nec rhoncus. Ut vel nisl ligula. Quisque libero arcu, rutrum ut urna sed, molestie fermentum arcu.
-            
-            Sed leo massa, commodo non porta at, euismod sed nisi. Vivamus pharetra gravida aliquet. Etiam feugiat faucibus ante, elementum suscipit ipsum efficitur nec. Fusce tincidunt odio sed lacus faucibus, ac condimentum lectus tincidunt. Curabitur elit orci, pulvinar vel ullamcorper eget, dignissim ac tellus. Nam rutrum sodales interdum. Morbi in justo at nunc condimentum faucibus a quis nunc. Integer in turpis eu massa vehicula ultricies. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-
-
-        </div>
+        <!-- <div class="content">
+            <div class="content-item-card">
+                <div class="content-image">
+                    <img src="/public/assets/images/aparat-fujifilm-instax-mini-12-pastel-blue-niebieski.jpg" alt="item image"></img>
+                </div>
+                <div class="content-data">
+                    <div class="content-user-data">
+                        <span><i class="bi bi-person-circle"></i></span>
+                        <p class="content-user-data-username">user_1</p>
+                        <p class="content-spacer"> - </p>
+                        <p class="content-user-data-upload-date">1d</p>
+                    </div>
+                    <div class="content-item-data">
+                        <div class="content-item-title">
+                            FUJIFILM Instax Mini 12
+                        </div>
+                        <div class="content-item-price">
+                            <span class="content-current-price">200zł</span>
+                            <span class="content-old-price">356zł</span>
+                            <div class="content-item-delivery-price">
+                                <span><i class="bi bi-truck"></i></span>
+                            </div>
+                        </div>
+                        <div class="content-item-description">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quibusdam rerum inventore porro quas, tenetur, nisi, nobis velit aliquam magnam earum fuga. Voluptatem pariatur dignissimos dolorem aspernatur illum molestias quibusdam!
+                        </div>
+                        <div class="content-item-actions">
+                            <button class="content-button content-like">
+                                <span><i class="bi bi-heart"></i></span>
+                                <p>125</p>
+                            </button>
+                            <button class="content-button content-favourites">
+                                <span><i class="bi bi-star"></i></span>
+                            </button>
+                            <button>
+                                Catch the deal
+                                <span><i class="bi bi-link"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-item-card">
+                <div class="content-image">
+                    <img src="/public/assets/images/aparat-fujifilm-instax-mini-12-pastel-blue-niebieski.jpg" alt="item image"></img>
+                </div>
+                <div class="content-data">
+                    <div class="content-user-data">
+                        <span><i class="bi bi-person-circle"></i></span>
+                        <p class="content-user-data-username">user_1</p>
+                        <p class="content-spacer"> - </p>
+                        <p class="content-user-data-upload-date">1d</p>
+                    </div>
+                    <div class="content-item-data">
+                        <div class="content-item-title">
+                            FUJIFILM Instax Mini 12
+                        </div>
+                        <div class="content-item-price">
+                            <span class="content-current-price">200zł</span>
+                            <span class="content-old-price">356zł</span>
+                            <div class="content-item-delivery-price">
+                                <span><i class="bi bi-truck"></i></span>
+                            </div>
+                        </div>
+                        <div class="content-item-description">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quibusdam rerum inventore porro quas, tenetur, nisi, nobis velit aliquam magnam earum fuga. Voluptatem pariatur dignissimos dolorem aspernatur illum molestias quibusdam!
+                        </div>
+                        <div class="content-item-actions">
+                            <button class="content-button content-like">
+                                <span><i class="bi bi-heart"></i></span>
+                                <p>125</p>
+                            </button>
+                            <button class="content-button content-favourites">
+                                <span><i class="bi bi-star"></i></span>
+                            </button>
+                            <button>
+                                Catch the deal
+                                <span><i class="bi bi-link"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-item-card">
+                <div class="content-image">
+                    <img src="/public/assets/images/aparat-fujifilm-instax-mini-12-pastel-blue-niebieski.jpg" alt="item image"></img>
+                </div>
+                <div class="content-data">
+                    <div class="content-user-data">
+                        <span><i class="bi bi-person-circle"></i></span>
+                        <p class="content-user-data-username">user_1</p>
+                        <p class="content-spacer"> - </p>
+                        <p class="content-user-data-upload-date">1d</p>
+                    </div>
+                    <div class="content-item-data">
+                        <div class="content-item-title">
+                            FUJIFILM Instax Mini 12
+                        </div>
+                        <div class="content-item-price">
+                            <span class="content-current-price">200zł</span>
+                            <span class="content-old-price">356zł</span>
+                            <div class="content-item-delivery-price">
+                                <span><i class="bi bi-truck"></i></span>
+                            </div>
+                        </div>
+                        <div class="content-item-description">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quibusdam rerum inventore porro quas, tenetur, nisi, nobis velit aliquam magnam earum fuga. Voluptatem pariatur dignissimos dolorem aspernatur illum molestias quibusdam!
+                        </div>
+                        <div class="content-item-actions">
+                            <button class="content-button content-like">
+                                <span><i class="bi bi-heart"></i></span>
+                                <p>125</p>
+                            </button>
+                            <button class="content-button content-favourites">
+                                <span><i class="bi bi-star"></i></span>
+                            </button>
+                            <button>
+                                Catch the deal
+                                <span><i class="bi bi-link"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
     </div>
     <script>
-        const dropdownIds = ["categories", "account", "test"];
+        const dropdownIds = ["categories", "account", "subnav"];
         const dropdowns = dropdownIds.reduce((acc, id) => {
             acc[id] = document.getElementById(`${id}_dropdown`);
             return acc;
@@ -155,24 +225,26 @@
 
         function closeDropdowns() {
             Object.values(dropdowns).forEach(dropdown => {
-                dropdown.classList.remove("navbar-dropdown-content-visible");
+                dropdown.classList.remove("dropdown-content-visible");
             });
         }
 
         function handleScroll() {
             const currentScrollPos = window.pageYOffset;
             closeDropdowns(dropdowns);
-
-            navbar.style.top = currentScrollPos > 10 ? `${prevScrollPos > currentScrollPos ? "0" : "-7vh"}` : "0";
+            let shouldToggle = currentScrollPos > 10
+            let isScrollingUp = prevScrollPos > currentScrollPos 
+            navbar.style.top = shouldToggle ? `${isScrollingUp ? "0" : "-7vh"}` : "0";
+            navbar.style.boxShadow = shouldToggle ? `${isScrollingUp ? "rgba(77, 71, 195, 0.45) 0px 5px 30px 0px" : "none"}` : "rgba(77, 71, 195, 0.45) 0px 5px 30px 0px";
             prevScrollPos = currentScrollPos;
         }
 
         function toggleDropdown(name) {
-            dropdowns[name].classList.toggle("navbar-dropdown-content-visible");
+            dropdowns[name].classList.toggle("dropdown-content-visible");
         }
 
         function handleClick(event) {
-            const isClickInsideDropdown = event.target.closest('.navbar-dropdown');
+            const isClickInsideDropdown = event.target.closest('.dropdown');
             if (!isClickInsideDropdown) {
                 closeDropdowns();
             }
