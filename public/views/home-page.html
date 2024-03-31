@@ -143,29 +143,43 @@
         </div>
     </div>
     <script>
-        let dropdowns = {};
-        dropdowns['categories'] = document.getElementById("categories_dropdown");
-        dropdowns['account'] = document.getElementById("account_dropdown");
-        dropdowns['test'] = document.getElementById("test_dropdown");
+        const dropdownIds = ["categories", "account", "test"];
+        const dropdowns = dropdownIds.reduce((acc, id) => {
+            acc[id] = document.getElementById(`${id}_dropdown`);
+            return acc;
+        }, {});
 
-        console.log(dropdowns);
-        
-        let prevScrollPos = window.pageYOffset;
         const navbar = document.getElementById("navbar");
-        window.addEventListener("scroll", function() {
+        let prevScrollPos = window.pageYOffset;
+        let ticking = false;
+
+        function closeDropdowns() {
+            Object.values(dropdowns).forEach(dropdown => {
+                dropdown.classList.remove("navbar-dropdown-content-visible");
+            });
+        }
+
+        function handleScroll() {
             const currentScrollPos = window.pageYOffset;
-            dropdowns['categories'].classList.remove("navbar-dropdown-content-visible");
-            if (currentScrollPos > 10) {
-                navbar.style.top = prevScrollPos > currentScrollPos ? "0" : "-7vh";
-                prevScrollPos = currentScrollPos;
-            } else {
-                navbar.style.top = "0";
-            }
-        });
+            closeDropdowns(dropdowns);
+
+            navbar.style.top = currentScrollPos > 10 ? `${prevScrollPos > currentScrollPos ? "0" : "-7vh"}` : "0";
+            prevScrollPos = currentScrollPos;
+        }
 
         function toggleDropdown(name) {
             dropdowns[name].classList.toggle("navbar-dropdown-content-visible");
         }
+
+        function handleClick(event) {
+            const isClickInsideDropdown = event.target.closest('.navbar-dropdown');
+            if (!isClickInsideDropdown) {
+                closeDropdowns();
+            }
+        }
+
+        window.addEventListener("scroll", handleScroll);
+        document.body.addEventListener("click", handleClick);
 
     </script>
 </body>
