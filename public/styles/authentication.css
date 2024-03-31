@@ -1,48 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
-body {
-    background: #4D47C3;
-}
-@media (max-width: 765px) {
-    body{
-        background: white;
-    }
-}
-.container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 90vh;
-}
-.box{
+.form-box{
     background: white;
     display: flex;
     flex-direction: column;
     padding: 30px 30px;
-    border-radius: 15px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-@media (max-width: 765px) {
-    .box{
-        box-shadow: none;
-    }
-}
-.form-box{
     width: 450px;
     margin: 0px 10px;
+    border-radius: 15px;
 }
 .form-box header{
     font-size: 26px;
     font-weight: 600;
 }
-.links {
+.form-box .links {
     margin-bottom: 30px;
-    font-size: 16px;
 }
 .form-box a{
     color: #4D47C3;
@@ -50,24 +20,23 @@ body {
 .form-box a:hover{
     opacity: 0.7;
 }
-.form-box form .field{
+.form-box .field{
     position: relative;
     display: flex;
-    margin-bottom: 30px;
     flex-direction: column;
-    border-radius: 15px;
+    margin-bottom: 30px;
 }
-.form-box form .input input{
+.form-box input{
     height: 60px;
     width: 100%;
     border-radius: 8px;
     border: 0px;
-    background: #F0EFFF;
-    font-size: 16px;
-    padding-left: 10px;
-    padding-right: 30px;
+    padding: 0 30px 0 10px ;
 }
-.form-box form .field .password-toggle-icon {
+.form-box .input input{
+    background: #F0EFFF;
+}
+.form-box .field .password-toggle {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -78,7 +47,7 @@ body {
 .form-box form .input input::placeholder{
     color: #A7A3FF;
 }
-.button{
+.form-box .button{
     height: 60px;
     border-radius: 8px;
     border: 0px;
@@ -86,10 +55,16 @@ body {
     box-shadow: rgba(77, 71, 195, 0.65) 0px 5px 30px;
     color: white;
     font-size: 16px;
+    text-decoration: none;
 }
-.button:hover{
+.form-box .button:hover{
     opacity: 0.7;
 }
-.submit{
-    width: 100%;
+@media (min-width: 800px) {
+    body{
+        background:  #4D47C3;
+    }
+    .form-box{
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
 }
