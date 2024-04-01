@@ -8,19 +8,19 @@
     <title>Home page</title>
 </head>
 <body>
-    <div class="container"> 
+    <div class="container">
         <nav id="navbar" class="navbar">
             <div class="navbar-container">
                 <div class="navbar-section">
-                    <a href="home-page" class="button" name="home">
+                    <a class="navbar-button" href="home-page" name="home">
                         <span class="navbar-icon"><i class="bi bi-house"></i></span>
                         <span class="navbar-label">Home</span>
                     </a>
                     <div class="dropdown">
-                        <button class="navbar-button dropdown-button" name="categories" onclick="toggleDropdown('categories')">
+                        <a class="navbar-button" name="categories" onclick="toggleDropdown('categories')">
                             <span class="navbar-icon"><i class="bi bi-columns-gap"></i></span>
                             <span class="navbar-label">Categories</span>
-                        </button>
+                        </a>
                         <div id="categories_dropdown" class="dropdown-content">
                             <a href="#" class="dropdown-link"> 
                                 <span class="dropdown-icon"><i class="bi bi-laptop"></i></span>
@@ -32,23 +32,22 @@
                             </a>
                         </div>
                     </div>
-                    <a href="#" class="button" name="search">
+                    <a class="navbar-button" href="#" name="search">
                         <span class="navbar-icon"><i class="bi bi-search"></i></span>
                         <span class="navbar-label">Search</span>
                     </a>
                 </div>
                 <div class="navbar-section">
-                    <a href="favourites" class="button" name="favourites">
+                    <a class="navbar-button" href="favourites" name="favourites">
                         <span class="navbar-icon"><i class="bi bi-star"></i></span>
                         <span class="navbar-label">Favourites</span>
                     </a>
-                    <a href="new-post" class="button" name="new-post">
+                    <a class="navbar-button" href="new-post" name="new-post">
                         <span class="navbar-icon"><i class="bi bi-plus-circle"></i></span>
                         <span class="navbar-label">New post</span>
                     </a>
-
                     <div class="dropdown">
-                        <button class="navbar-button dropdown-button" name="account" onclick="toggleDropdown('account')">
+                        <button class="navbar-button" name="account" onclick="toggleDropdown('account')">
                             <span class="navbar-icon"><i class="bi bi-person"></i></span>
                             <span class="navbar-label">Account</span>
                         </button>
@@ -66,13 +65,12 @@
                 </div>
             </div>
         </nav>
-
         <div class="subnav">
             <div class="subnav-container">
                 <div class="dropdown">
-                    <button class="dropdown-button" name="subnavDropdown" onclick="toggleDropdown('subnav')">
+                    <button class="subnav-button" name="subnavDropdown" onclick="toggleDropdown('subnav')">
                         <span class="subnav-label">Hot</span>
-                        <span><i class="bi bi-caret-down-fill"></i></span>
+                        <span class="subnav-icon"><i class="bi bi-caret-down-fill"></i></span>
                     </button>
                     <div id="subnav_dropdown" class="dropdown-content">
                         <a href="#" class="dropdown-link"> 
@@ -85,8 +83,8 @@
                 </div>
             </div>
         </div>
-
         <!-- <div class="content">
+
             <div class="content-item-card">
                 <div class="content-image">
                     <img src="/public/assets/images/aparat-fujifilm-instax-mini-12-pastel-blue-niebieski.jpg" alt="item image"></img>
@@ -232,7 +230,7 @@
         function handleScroll() {
             const currentScrollPos = window.pageYOffset;
             closeDropdowns(dropdowns);
-            let shouldToggle = currentScrollPos > 10
+            let shouldToggle = currentScrollPos > 35
             let isScrollingUp = prevScrollPos > currentScrollPos 
             navbar.style.top = shouldToggle ? `${isScrollingUp ? "0" : "-7vh"}` : "0";
             navbar.style.boxShadow = shouldToggle ? `${isScrollingUp ? "rgba(77, 71, 195, 0.45) 0px 5px 30px 0px" : "none"}` : "rgba(77, 71, 195, 0.45) 0px 5px 30px 0px";

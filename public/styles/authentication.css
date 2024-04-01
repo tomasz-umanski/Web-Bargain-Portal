@@ -1,11 +1,18 @@
+body{
+    background:  #4D47C3;
+}
+.container{
+    justify-content: center;
+}
 .form-box{
-    background: white;
     display: flex;
     flex-direction: column;
+    background: white;
+    width: 450px;
     padding: 30px;
-    width: 90vw;
     margin: 0px 10px;
     border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .form-box header{
     font-size: 26px;
@@ -20,52 +27,53 @@
 .form-box a:hover{
     opacity: 0.7;
 }
-.form-box .field{
-    position: relative;
+.form-input{
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
-}
-.form-box input{
-    height: 60px;
+    position: relative;
     width: 100%;
+    height: 60px;
+    margin-bottom: 30px;
     border-radius: 8px;
+    padding: 0 30px 0 10px;
     border: 0px;
-    padding: 0 30px 0 10px ;
-}
-.form-box .input input{
     background: #F0EFFF;
 }
-.form-box .field .password-toggle {
+.form-input::placeholder{
+    color: #A7A3FF;
+}
+.form-box .button{
+    justify-content: center;
+    align-items: center;
+    background: rgb(77, 71, 195) !important;
+    box-shadow: rgba(77, 71, 195, 0.65) 0px 5px 30px !important;
+    color: white;
+    text-decoration: none;
+    transition-duration: 100ms;
+}
+.form-box .button:hover{
+    opacity: 0.7;
+}
+.form-box .button:active{
+    opacity: 0.5;
+}
+.form-box .form-password-input{
+    position: relative;
+}
+.form-box .password-toggle {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 10px;
     cursor: pointer;
-    color: #A7A3FF;
+    color: #A7A3FF; 
 }
-.form-box form .input input::placeholder{
-    color: #A7A3FF;
-}
-.form-box .button{
-    height: 60px;
-    border-radius: 8px;
-    border: 0px;
-    background: rgb(77, 71, 195);
-    box-shadow: rgba(77, 71, 195, 0.65) 0px 5px 30px;
-    color: white;
-    font-size: 16px;
-    text-decoration: none;
-}
-.form-box .button:hover{
-    opacity: 0.7;
-}
-@media (min-width: 800px) {
+@media (max-width: 800px) {
     body{
-        background:  #4D47C3;
+        background:  white;
     }
     .form-box{
-        width: 450px;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        width: 90vw;
+        box-shadow: none;
     }
 }

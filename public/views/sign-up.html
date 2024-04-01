@@ -17,22 +17,18 @@
                 <div>You can <a href="sign-in">Login here!</a></div>
             </div>
             <form action="" method="post">
-                <div class="field input">
-                    <input type="email" name="email" id="email" placeholder="Enter e-mail" required>
-                </div>
-                <div class="field input">
-                    <input type="username" name="username" id="username" placeholder="Enter username" required>
-                </div>
-                <div class="field input">
-                    <input type="password" name="password" id="password" placeholder="Password" required>
-                    <span class="password-toggle"><i name="password_toggle" class="bi bi-eye-slash-fill"></i></span>
-                </div>
-                <div class="field input">
-                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" required>
-                    <span class="password-toggle"><i name="confirm_password_toggle" class="bi bi-eye-slash-fill"></i></span>
-                </div>
-                <div class="field">
-                    <input type="submit" class="button" name="submit" value="Register" required>
+                <div class="form-inputs">
+                    <input class="form-input" type="email" name="email" id="email" placeholder="Enter e-mail" required>
+                    <input class="form-input" type="username" name="username" id="username" placeholder="Enter username" required>
+                    <div class="form-password-input">
+                        <input class="form-input" type="password" name="password" id="password" placeholder="Password" required>
+                        <span class="password-toggle"><i name="password_toggle" class="bi bi-eye-slash-fill"></i></span>
+                    </div>
+                    <div class="form-password-input">
+                        <input class="form-input" type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" required>
+                        <span class="password-toggle"><i name="confirm_password_toggle" class="bi bi-eye-slash-fill"></i></span>
+                    </div>
+                    <input class="form-input button" type="submit" class="" name="submit" value="Register" required>
                 </div>
             </form>
         </div>
