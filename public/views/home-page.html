@@ -11,7 +11,7 @@
     <div class="container">
         <nav id="navbar" class="navbar">
             <div class="navbar-container">
-                <div class="navbar-section">
+                <div class="navbar-section section-left">
                     <a class="navbar-button" href="home-page" name="home">
                         <span class="navbar-icon"><i class="bi bi-house"></i></span>
                         <span class="navbar-label">Home</span>
@@ -32,12 +32,12 @@
                             </a>
                         </div>
                     </div>
-                    <a class="navbar-button" href="#" name="search">
+                    <a id="search_button" class="search-button" href="#" name="search" onclick="toggleSearchBar()">
+                        <input type="text" class="search-input" placeholder="Search">
                         <span class="navbar-icon"><i class="bi bi-search"></i></span>
-                        <span class="navbar-label">Search</span>
                     </a>
                 </div>
-                <div class="navbar-section">
+                <div class="navbar-section section-rigth">
                     <a class="navbar-button" href="favourites" name="favourites">
                         <span class="navbar-icon"><i class="bi bi-star"></i></span>
                         <span class="navbar-label">Favourites</span>
@@ -216,6 +216,7 @@
             acc[id] = document.getElementById(`${id}_dropdown`);
             return acc;
         }, {});
+        const searchButton = document.getElementById('search_button');
 
         const navbar = document.getElementById("navbar");
         let prevScrollPos = window.pageYOffset;
@@ -227,9 +228,17 @@
             });
         }
 
+        function closeDropdowns(id) {
+            Object.values(dropdowns).forEach(dropdown => {
+                if (dropdown.id != id) {
+                    dropdown.classList.remove("dropdown-content-visible");
+                }
+            });
+        }
+
         function handleScroll() {
             const currentScrollPos = window.pageYOffset;
-            closeDropdowns(dropdowns);
+            closeDropdowns();
             let shouldToggle = currentScrollPos > 35
             let isScrollingUp = prevScrollPos > currentScrollPos 
             navbar.style.top = shouldToggle ? `${isScrollingUp ? "0" : "-7vh"}` : "0";
@@ -238,13 +247,22 @@
         }
 
         function toggleDropdown(name) {
+            closeDropdowns(dropdowns[name].id);
             dropdowns[name].classList.toggle("dropdown-content-visible");
+        }
+
+        function toggleSearchBar() {
+            searchButton.classList.add("search-button-visible");
         }
 
         function handleClick(event) {
             const isClickInsideDropdown = event.target.closest('.dropdown');
             if (!isClickInsideDropdown) {
                 closeDropdowns();
+            }
+            const isClickInsideSearch = event.target.closest('.search-button');
+            if(!isClickInsideSearch) {
+                searchButton.classList.remove("search-button-visible");
             }
         }
 
