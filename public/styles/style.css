@@ -436,7 +436,6 @@ body{
     }
     .content-item-price{
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         grid-column-gap: 0px;
         grid-row-gap: 0px;
@@ -444,7 +443,6 @@ body{
     .content-item-price-only{
         grid-area: 1 / 1 / 2 / 3;
         grid-column: span 2;
-        display: flex;
     }
     .content-item-price span{
         font-size: 16px;
