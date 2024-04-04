@@ -1,0 +1,18 @@
+.subnav{
+    margin-top: 0px;
+}
+.favourites-header{
+    margin-top: var(--navbar-height);
+    min-height: calc(var(--subnav-height)*2);
+    position: relative;
+    padding: 20px;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.favourites-label{
+    font-size: 30px;
+    font-weight: 500;
+}

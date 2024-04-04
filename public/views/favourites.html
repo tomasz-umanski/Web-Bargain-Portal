@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="public/styles/style.css">
-    <title>Home page</title>
+    <link rel="stylesheet" type="text/css" href="public/styles/favourites.css">
+    <title>Favourites</title>
 </head>
 <body>
     <div class="container">
@@ -69,19 +70,27 @@
                 </div>
             </div>
         </nav>
-        <div class="subnav">
+        <div class="favourites-header">
+            <span class="favourites-label">
+                Favourites
+            </span>
+        </div>
+        <div class="subnav favourites-subnav">
             <div class="subnav-container">
                 <div class="dropdown">
                     <button class="subnav-button" name="subnavDropdown" onclick="toggleDropdown('subnav')">
-                        <span class="subnav-label">Hot</span>
+                        <span class="subnav-label">Observed categories</span>
                         <span class="subnav-icon"><i class="bi bi-caret-down-fill"></i></span>
                     </button>
                     <div id="subnav_dropdown" class="dropdown-content">
                         <a href="#" class="dropdown-link"> 
-                            <span>New</span>
+                            <span>Observed searches</span>
                         </a>
                         <a href="#" class="dropdown-link"> 
-                            <span>Last call</span>
+                            <span>Observed deals</span>
+                        </a>
+                        <a href="#" class="dropdown-link"> 
+                            <span>Liked deals</span>
                         </a>
                     </div>
                 </div>

@@ -1,0 +1,117 @@
+.content{
+    margin-top: var(--navbar-height);
+    position: relative;
+    justify-content: center;
+}
+.form-box{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    width: 55vw;
+    min-width: 50em;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 30px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+input, label {
+    display:block;
+}
+.form-input{
+    margin-bottom: 15px;
+    width: 100%;
+}
+.form-photo-input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+.form-photo-input label{
+    padding: 10px 40px;
+    border-radius: 15px;
+    background-color: #4285F4;
+    color: white;
+}
+.form-photo-input label:hover{
+    opacity: 0.7;
+}
+.form-photo-input :active{
+    opacity: 0.5;
+}
+.label-tag{
+    color: #ADADAD;
+    font-weight: 300;
+    font-size: 14px;
+}
+.label-name{
+    font-weight: 500;
+}
+input, textarea{
+    width: 100%;
+    border-radius: 15px;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px #ADADAD solid;
+    background: white;
+}
+textarea{
+    padding: 10px 10px;
+    height: 80px;
+    resize: vertical;
+}
+.horizontal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 30px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input[type="file"] {
+    display: none;
+}
+.button{
+    margin-top: 40px;
+    padding: 10px 40px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    background: rgb(77, 71, 195) !important;
+    box-shadow: rgba(77, 71, 195, 0.35) 0px 5px 30px !important;
+    color: white;
+    text-decoration: none;
+    transition-duration: 100ms;
+}
+.button:hover{
+    opacity: 0.7;
+}
+.button:active{
+    opacity: 0.5;
+}
+input[type="date"] { 
+    display: flex;
+    width: 100%;
+    background: transparent;
+}
+@media (max-width: 850px) {
+    .form-box{
+        min-width: 0 !important;
+        width: 96vw;
+        gap: 0;
+    }
+    .form-input label{
+        display: flex;
+        flex-direction: column;
+    }
+}
