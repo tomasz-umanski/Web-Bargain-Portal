@@ -246,6 +246,7 @@ body{
     flex: 1;
     background-color: var(--bgcolor);
     width: 100%;
+    padding-bottom: 10px;
 }
 .content-item{
     background-color: white;
@@ -368,6 +369,11 @@ body{
 }
 .content-catchdeal:active{
     opacity: 0.5;
+}
+footer {
+    text-align: center;
+    padding: 2em;
+    color: grey;
 }
 /* ================= MOBILE STYLING ================= */
 @media (max-width: 850px) {
