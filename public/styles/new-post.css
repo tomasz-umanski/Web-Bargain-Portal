@@ -100,7 +100,6 @@ input[type="file"] {
     opacity: 0.5;
 }
 input[type="date"] { 
-    display: flex;
     width: 100%;
     background: transparent;
 }
@@ -113,5 +112,8 @@ input[type="date"] {
     .form-input label{
         display: flex;
         flex-direction: column;
+    }
+    input[type="date"] { 
+        display: flex;
     }
 }

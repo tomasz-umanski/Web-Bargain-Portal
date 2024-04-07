@@ -88,7 +88,7 @@ body{
     height: 100%;
 }
 .account-dropdown{
-    right: 0;
+    right: 5px;
 }
 .dropdown-content{
     display: none;
@@ -96,13 +96,11 @@ body{
     background-color: white;
     border: grey solid 1px;
     padding: 10px 20px;
-    border-radius: 0 0 9px 9px;
+    border-radius: 9px;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     overflow: auto;
     transition: all 0.3s ease-out;
-}
-.navbar .dropdown-content{
-    margin-top: -1px;
+    margin-top: 5px;
 }
 .dropdown-content-visible {
     display: block;
@@ -140,11 +138,25 @@ body{
     left: 15px;
     color: white;
 }
+.search-button .search-clear-icon{
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    color: var(--primary);
+}
+.search-button .search-clear-icon:hover{
+    opacity: 0.7;
+}
+.search-button .search-clear-icon:active{
+    opacity: 0.5;
+}
 .search-input{
     width: 100%;
     height: 100%;
     border-radius: 25px;
-    padding: 0 10px 0 35px;
+    padding: 0 35px 0 35px;
     border: none;
     outline: none;
     color: white;
@@ -180,6 +192,9 @@ body{
     }
     .search-input::placeholder{
         color: black;
+    }
+    .search-clear-icon{
+        display: block;
     }
 }
 .search-button-visible:hover{
@@ -403,6 +418,9 @@ footer {
         left: 1vw;
         width: 98vw;
         .search-input{
+            display: block;
+        }
+        .search-clear-icon{
             display: block;
         }
     }

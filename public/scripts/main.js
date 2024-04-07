@@ -7,6 +7,7 @@ const dropdowns = dropdownIds.reduce((acc, id) => {
     return acc;
 }, {});
 const searchButton = document.getElementById('search_button');
+const searchInput = document.getElementById('search_input');
 
 const navbar = document.getElementById("navbar");
 let prevScrollPos = window.scrollY;
@@ -43,6 +44,10 @@ function toggleDropdown(name) {
 
 function toggleSearchBar() {
     searchButton.classList.add("search-button-visible");
+}
+
+function clearSearchBarInput() {
+    searchInput.value = "";
 }
 
 function handleClick(event) {

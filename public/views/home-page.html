@@ -33,8 +33,9 @@
                         </div>
                     </div>
                     <a id="search_button" class="search-button" name="search" onclick="toggleSearchBar()">
-                        <input type="text" class="search-input" placeholder="Search">
+                        <input id="search_input" type="text" class="search-input" placeholder="Search">
                         <span class="navbar-icon"><i class="bi bi-search"></i></span>
+                        <span class="search-clear-icon"><i class="bi bi-x-lg" onclick="clearSearchBarInput()"></i></span>
                     </a>
                 </div>
                 <div class="navbar-section section-rigth">
