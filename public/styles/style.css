@@ -390,6 +390,11 @@ footer {
     padding: 2em;
     color: grey;
 }
+.not-found{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* ================= MOBILE STYLING ================= */
 @media (max-width: 850px) {
     .navbar{

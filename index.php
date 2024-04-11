@@ -1,11 +1,20 @@
 <?php
+require 'Router.php';
 
-require_once 'src/controller/AppController.php';
 
-$controller = new AppController();
+$uri = trim($_SERVER['REQUEST_URI'], '/');
+$uri = parse_url($uri, PHP_URL_PATH);
 
-$path = trim($_SERVER['REQUEST_URI'], '/');
-$path = parse_url($path, PHP_URL_PATH);
-$action = explode("/", $path)[0];
+Router::get('', 'DefaultController');
+Router::get('new', 'DefaultController');
+Router::get('lastCall', 'DefaultController');
 
-$controller->render($action);
+Router::get('favourites', 'FavouritesController');
+Router::get('favouriteSearches', 'FavouritesController');
+Router::get('favouriteDeals', 'FavouritesController');
+
+Router::get('newPost', 'NewPostController');
+
+Router::get('category', 'CategoryController');
+
+Router::run($uri);
