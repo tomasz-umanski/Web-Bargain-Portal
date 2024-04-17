@@ -26,11 +26,11 @@
             </a>
         </div>
         <div class="navbar-section section-rigth">
-            <a class="navbar-button" href="favourites" name="favourites">
+            <a class="navbar-button" href="/favourites" name="favourites">
                 <span class="navbar-icon"><i class="bi bi-star"></i></span>
                 <span class="navbar-label">Favourites</span>
             </a>
-            <a class="navbar-button" href="newPost" name="new-post">
+            <a class="navbar-button" href="/newPost" name="new-post">
                 <span class="navbar-icon"><i class="bi bi-plus-circle"></i></span>
                 <span class="navbar-label">New post</span>
             </a>
