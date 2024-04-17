@@ -17,5 +17,6 @@
         <?php require('partials/footer.php') ?>
     </div>
     <script type="text/javascript" src="/public/scripts/main.js" defer></script>
+    <script type="text/javascript" src="/public/scripts/search.js" defer></script>
 </body>
 </html>

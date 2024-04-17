@@ -307,6 +307,9 @@ body{
 .content-user-data * {
     font-size: 20px;
 }
+.content-user-data p:last-child {
+    margin-left: auto;
+}
 .content-item-data{
     grid-area: 2 / 2 / 3 / 3;
     grid-column: span 3;
@@ -353,7 +356,7 @@ body{
     flex-direction: row;
     gap: 10px;
 }
-.content-item-actions button:last-child {
+.content-item-actions a:last-child {
     margin-left: auto;
 }
 .content-button{
@@ -366,6 +369,7 @@ body{
     padding: 5px 10px;
     color: black;
     gap: 8px;
+    text-decoration: none;
 }
 .content-button:hover{
     background-color: var(--bgcolor);
@@ -457,6 +461,12 @@ footer {
     }
     .content-user-data * {
         font-size: 16px;
+    }
+    .content-spacer {
+        display: none;
+    }
+    .content-user-data-upload-date {
+        display: none;
     }
     .content-item-data{
         grid-area: 2 / 2 / 4 / 5;
