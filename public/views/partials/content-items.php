@@ -7,7 +7,7 @@
                 </div>
                 <div class="content-user-data">
                     <span><i class="bi bi-person-circle"></i></span>
-                    <p class="content-user-data-username"><?= $post->getCreatedBy();?></p>
+                    <p class="content-user-data-username"><?= $post->getUser();?></p>
                     <p class="content-spacer"> - </p>
                     <p class="content-user-data-upload-date"> <?= $post->getCreationDateDiff() ?> </p>
                     <p class="content-user-data-end-date"> <?= $post->getEndDateDiff() ?> </p>

@@ -6,6 +6,7 @@ class CategoryController extends AppController {
 
     public function category($url) {
         $selectedCategory = $this->categoryRepository->getCategoryByUrl($url);
-        $this->render("category", ['selectedCategory' => $selectedCategory]);
+        $posts = $this->postRepository->getPostsByCategory($selectedCategory->getId());
+        $this->render("category", ['selectedCategory' => $selectedCategory, 'posts' => $posts]);
     }
 }

@@ -13,11 +13,12 @@ class DefaultController extends AppController {
     private const URL_NEW = "/new";
     private const URL_LAST_CALL = "/lastCall";
 
-    private $postRepository;
-
-    public function __construct() {
-        parent::__construct();
-        $this->postRepository = new PostRepository();
+    private function renderHomePage($selectedOptionName, $options, $posts) {
+        $subnavContent = [
+            "selectedOptionName" => $selectedOptionName,
+            "options" => $options
+        ];
+        $this->render('home-page', ['subnavContent' => $subnavContent, 'posts' => $posts]);
     }
 
     public function index() {
@@ -59,13 +60,5 @@ class DefaultController extends AppController {
 
             echo json_encode($this->postRepository->getProjectByQueryString($decoded['search']));
         }
-    }
-
-    private function renderHomePage($selectedOptionName, $options, $posts) {
-        $subnavContent = [
-            "selectedOptionName" => $selectedOptionName,
-            "options" => $options
-        ];
-        $this->render('home-page', ['subnavContent' => $subnavContent, 'posts' => $posts]);
     }
 }

@@ -6,7 +6,8 @@ class Category {
     private $url;
     private $icon;
 
-    public function __construct($name, $url, $icon) {
+    public function __construct($id, $name, $url, $icon) {
+        $this->id = $id;
         $this->name = $name;
         $this->url = $url;
         $this->icon = $icon;

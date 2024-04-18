@@ -20,6 +20,7 @@ class CategoryRepository extends Repository {
 
     private function createCategoryFromData(array $category): Category {
         return new Category(
+            $category['id'],
             $category['name'],
             $category['url'],
             $category['icon']

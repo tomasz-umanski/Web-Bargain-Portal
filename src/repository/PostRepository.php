@@ -83,7 +83,7 @@ class PostRepository extends Repository {
         return $this->fetchPostsByQuery($query);
     }
 
-    public function getProjectByQueryString(string $searchString): array {
+    public function getPostByQueryString(string $searchString): array {
         $result = [];
         $searchString = '%' . strtolower($searchString) . '%';
         $query = $this->database->connect()->prepare('
@@ -94,6 +94,27 @@ class PostRepository extends Repository {
             ORDER BY p.end_date ASC;
         ');
         $query->bindParam(':search', $searchString, PDO::PARAM_STR);
+        $query->execute();
+
+        $posts = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($posts as $post) {
+            $result[] = $this->createPostFromData($post);
+        }
+
+        return $result;
+    }
+
+    public function getPostsByCategory($categoryId): array {
+        $result = [];
+        $query = $this->database->connect()->prepare('
+            SELECT p.*, u.user_name
+            FROM post p
+            JOIN users u ON p.user_id = u.id
+            WHERE p.end_date > NOW() AND (p.category_id = :category_id)
+            ORDER BY p.end_date ASC;
+        ');
+        $query->bindParam(':category_id', $categoryId, PDO::PARAM_STR);
         $query->execute();
 
         $posts = $query->fetchAll(PDO::FETCH_ASSOC);
