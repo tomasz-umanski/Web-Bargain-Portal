@@ -16,7 +16,8 @@ class Post {
     private $endDateDiff;
     private $user;
 
-    public function __construct($title, $description, $oldPrice, $newPrice, $deliveryPrice, $likesCount, $offerUrl, $imageUrl, $creationDateDiff, $endDateDiff, $user) {
+    public function __construct($id, $title, $description, $oldPrice, $newPrice, $deliveryPrice, $likesCount, $offerUrl, $imageUrl, $creationDateDiff, $endDateDiff, $user) {
+        $this->id = $id;
         $this->title = $title;
         $this->description = $description;
         $this->oldPrice = $oldPrice;

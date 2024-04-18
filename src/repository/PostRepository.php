@@ -36,6 +36,7 @@ class PostRepository extends Repository {
 
     private function createPostFromData(array $post): Post {
         return new Post(
+            $post['id'],
             $post['title'],
             $post['description'],
             $post['old_price'],
