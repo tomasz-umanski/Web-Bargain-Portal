@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/style.css">
-    <title>Not Found</title>
+    <link rel="stylesheet" type="text/css" href="/public/styles/search.css">
+    <title> Search </title>
 </head>
 <body>
     <div class="container">
         <?php require('partials/navbar.php') ?>
-        <div class="content not-found">
-            <span>Nothing found...</span>
+        <div class="content">
+            <?php require('partials/content-items.php') ?>
         </div>
         <?php require('partials/footer.php') ?>
     </div>

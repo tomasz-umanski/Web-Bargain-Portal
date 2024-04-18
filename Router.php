@@ -5,6 +5,7 @@ require_once 'src/controllers/DefaultController.php';
 require_once 'src/controllers/FavouritesController.php';
 require_once 'src/controllers/NewPostController.php';
 require_once 'src/controllers/CategoryController.php';
+require_once 'src/controllers/SearchController.php';
 
 class Router {
     private static $routes;

@@ -8,7 +8,8 @@ $uri = parse_url($uri, PHP_URL_PATH);
 Router::get('', 'DefaultController');
 Router::get('new', 'DefaultController');
 Router::get('lastCall', 'DefaultController');
-Router::post('search', 'DefaultController');
+
+Router::get('search', 'SearchController');
 
 Router::get('favourites', 'FavouritesController');
 Router::get('favouriteSearches', 'FavouritesController');
