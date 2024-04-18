@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/style.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/favourites.css">
-    <title><?= $categoryDetails['title'] ?></title>
+    <title><?= $selectedCategory->getName() ?></title>
 </head>
 <body>
     <div class="container">
         <?php require('partials/navbar.php') ?>
         <div class="favourites-header">
             <span class="favourites-label">
-                <?= $categoryDetails['title'] ?>
+                <?=  $selectedCategory->getName() ?>
             </span>
         </div>
         <div class="content">

@@ -1,20 +1,21 @@
 <?php
 
-class AppController {
+require_once __DIR__ . '/../models/Category.php';
+require_once __DIR__ . '/../repository/CategoryRepository.php';
 
-    private $categories;
+class AppController {
+    protected $categoryRepository;
 
     public function __construct() {
-        $this->categories = [
-            ["url" => "/category/technology", "name" => "Technology", "icon" => "bi bi-laptop"]
-        ];
+        $this->categoryRepository = new CategoryRepository();
     }
 
     protected function render(string $template = null, array $variables = []) {
         $templatePath = 'public/views/'. $template.'.php';
         $output = 'File not found';
 
-        $variables['categories'] = $this->categories;
+        $categories = $this->categoryRepository->getCategories();
+        $variables['categories'] = $categories;
 
         if(file_exists($templatePath)){
             extract($variables);

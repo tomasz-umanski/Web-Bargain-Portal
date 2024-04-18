@@ -4,10 +4,8 @@ require_once 'AppController.php';
 
 class CategoryController extends AppController {
 
-    public function category($id) {
-        $categoryDetails = [
-            "title" => "Technology"
-        ];
-        $this->render("category", ['categoryDetails' => $categoryDetails]);
+    public function category($url) {
+        $selectedCategory = $this->categoryRepository->getCategoryByUrl($url);
+        $this->render("category", ['selectedCategory' => $selectedCategory]);
     }
 }

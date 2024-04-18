@@ -11,10 +11,12 @@ class Post {
     private $offerUrl;
     private $imageUrl;
     private $creationDate;
+    private $creationDateDiff;
     private $endDate;
-    private $createdBy;
+    private $endDateDiff;
+    private $user;
 
-    public function __construct($title, $description, $oldPrice, $newPrice, $deliveryPrice, $likesCount, $offerUrl, $imageUrl, $creationDate, $endDate, $createdBy) {
+    public function __construct($title, $description, $oldPrice, $newPrice, $deliveryPrice, $likesCount, $offerUrl, $imageUrl, $creationDateDiff, $endDateDiff, $user) {
         $this->title = $title;
         $this->description = $description;
         $this->oldPrice = $oldPrice;
@@ -23,9 +25,9 @@ class Post {
         $this->likesCount = $likesCount;
         $this->offerUrl = $offerUrl;
         $this->imageUrl = $imageUrl;
-        $this->creationDate = $creationDate;
-        $this->endDate = $endDate;
-        $this->createdBy = $createdBy;
+        $this->creationDateDiff = $creationDateDiff;
+        $this->endDateDiff = $endDateDiff;
+        $this->user = $user;
     }
 
     public function getId() {
@@ -68,11 +70,19 @@ class Post {
         return $this->creationDate;
     }
 
+    public function getCreationDateDiff() {
+        return $this->creationDateDiff;
+    }
+
     public function getEndDate() {
         return $this->endDate;
     }
 
-    public function getCreatedBy() {
-        return $this->createdBy;
+    public function getEndDateDiff() {
+        return $this->endDateDiff;
+    }
+
+    public function getUser() {
+        return $this->user;
     }
 }

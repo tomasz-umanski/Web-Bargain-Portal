@@ -9,40 +9,8 @@
                     <span><i class="bi bi-person-circle"></i></span>
                     <p class="content-user-data-username"><?= $post->getCreatedBy();?></p>
                     <p class="content-spacer"> - </p>
-                    <?php
-                    $creationDateString = $post->getCreationDate();
-
-                    $creationDate = new DateTime($creationDateString);
-
-                    $currentDate = new DateTime();
-
-                    $interval = $creationDate->diff($currentDate);
-
-                    $totalHours = $interval->days * 24 + $interval->h;
-
-                    if ($interval->days > 0) {
-                        echo "<p class='content-user-data-upload-date'>$interval->days d $interval->h h</p>";
-                    } else {
-                        echo "<p class='content-user-data-upload-date'>$totalHours h</p>";
-                    }
-                    ?>
-                    <?php
-                    $endDateString = $post->getEndDate();
-
-                    $endDate = new DateTime($endDateString);
-
-                    $currentDate = new DateTime();
-
-                    $interval = $currentDate->diff($endDate);
-
-                    $totalHours = $interval->days * 24 + $interval->h;
-
-                    if ($interval->days > 0) {
-                        echo "<p class='content-user-data-end-date'>$interval->days d $interval->h h</p>";
-                    } else {
-                        echo "<p class='content-user-data-end-date'>$totalHours h</p>";
-                    }
-                    ?>
+                    <p class="content-user-data-upload-date"> <?= $post->getCreationDateDiff() ?> </p>
+                    <p class="content-user-data-end-date"> <?= $post->getEndDateDiff() ?> </p>
                 </div>
                 <div class="content-item-data">
                     <div class="content-item-title">
@@ -54,13 +22,7 @@
                         <div class="content-item-delivery-price">
                             <span><i class="bi bi-truck"></i></span>
                             <span>
-                                <?php 
-                                    if ($post->getDeliveryPrice() == 0) {
-                                        echo "Free delivery";
-                                    } else {
-                                        echo $post->getDeliveryPrice() . " zł";
-                                    }
-                                ?>
+                                <?= $post->getDeliveryPrice() ?>
                             </span>
                         </div>
                     </div>
@@ -96,6 +58,8 @@
                 <span><i class="bi bi-person-circle"></i></span>
                 <p class="content-user-data-username">UserName</p>
                 <p class="content-spacer"> - </p>
+                <p class="content-user-data-upload-date"> 1d </p>
+                <p class="content-user-data-end-date"> 2d </p>
             </div>
             <div class="content-item-data">
                 <div class="content-item-title">

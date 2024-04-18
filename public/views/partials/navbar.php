@@ -12,9 +12,9 @@
                 </a>
                 <div id="categories_dropdown" class="dropdown-content">
                     <?php foreach ($categories as $category) : ?>
-                        <a href="<?= $category['url']?>" class="dropdown-link"> 
-                            <span class="dropdown-icon"><i class="<?= $category['icon']?>"></i></span>
-                            <span><?= $category['name']?></span>
+                        <a href="/category/<?= $category->getUrl() ?>" class="dropdown-link"> 
+                            <span class="dropdown-icon"><i class="<?= $category->getIcon() ?>"></i></span>
+                            <span><?= $category->getName() ?></span>
                         </a>
                     <?php endforeach; ?>
                 </div>
@@ -57,3 +57,5 @@
         </div>
     </div>
 </nav>
+
+<script type="text/javascript" src="/public/scripts/search.js" defer></script>
