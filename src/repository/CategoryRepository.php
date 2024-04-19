@@ -35,7 +35,7 @@ class CategoryRepository extends Repository {
         return $this->fetchCategoriesByQuery($query);
     }
 
-    public function getCategoryByUrl($url): Category {
+    public function getCategoryByUrl($url): ?Category {
         $query = '
             SELECT *
             FROM category

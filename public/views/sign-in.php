@@ -14,16 +14,17 @@
             <header>Sign in</header>
             <div class="links">
                 <div>If you don’t have an account</div>
-                <div>You can <a href="sign-up">Register here!</a></div>
+                <div>You can <a href="signUp">Register here!</a></div>
             </div>
-            <form action="" method="post">
+            <form action="signIn" method="Post">
                 <div class="form-inputs">
-                    <input class="form-input" type="username" name="email" id="email" placeholder="Enter e-mail or username" required>
+                    <input class="form-input" type="username" name="email" id="email" placeholder="Enter e-mail or username">
                     <div class="form-password-input">
-                        <input class="form-input" type="password" name="password" id="password" placeholder="Password" required>
+                        <input class="form-input" type="password" name="password" id="password" placeholder="Password">
                         <span class="password-toggle"><i name="password_toggle" class="bi bi-eye-slash-fill"></i></span>
                     </div>
-                    <input class="form-input button" type="submit" name="submit" value="Login" required>
+                    <?php require('partials/validations.php') ?>
+                    <input class="form-input button" type="submit" name="submit" value="Sign in">
                 </div>
             </form>
         </div>

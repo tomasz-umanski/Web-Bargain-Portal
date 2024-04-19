@@ -1,5 +1,5 @@
 body{
-    background:  #4D47C3;
+    background:  var(--primary);
 }
 .container{
     justify-content: center;
@@ -67,6 +67,10 @@ body{
     right: 10px;
     cursor: pointer;
     color: #A7A3FF; 
+}
+.validations {
+    color: var(--liked);
+    margin-bottom: 30px;
 }
 @media (max-width: 800px) {
     body{

@@ -6,12 +6,22 @@ require_once __DIR__ . '/../models/Post.php';
 require_once __DIR__ . '/../repository/PostRepository.php';
 
 class AppController {
+    private $request;
     protected $categoryRepository;
     protected $postRepository;
 
     public function __construct() {
+        $this->request = $_SERVER['REQUEST_METHOD'];
         $this->categoryRepository = new CategoryRepository();
         $this->postRepository = new PostRepository();
+    }
+
+    protected function isGet(): bool {
+        return $this->request === 'GET';
+    }
+
+    protected function isPost(): bool {
+        return $this->request === 'POST';
     }
 
     protected function render(string $template = null, array $variables = []) {

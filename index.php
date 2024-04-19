@@ -9,6 +9,8 @@ Router::get('', 'DefaultController');
 Router::get('new', 'DefaultController');
 Router::get('lastCall', 'DefaultController');
 
+Router::get('category', 'CategoryController');
+
 Router::get('search', 'SearchController');
 
 Router::get('favourites', 'FavouritesController');
@@ -17,6 +19,8 @@ Router::get('favouriteDeals', 'FavouritesController');
 
 Router::get('newPost', 'NewPostController');
 
-Router::get('category', 'CategoryController');
+// Router::get('signIn', 'AuthenticationController');
+Router::post('signIn', 'AuthenticationController');
+Router::get('signUp', 'AuthenticationController');
 
 Router::run($uri);

@@ -14,7 +14,7 @@
             <header>Sign up</header>
             <div class="links">
                 <div>If you already have an account</div>
-                <div>You can <a href="sign-in">Login here!</a></div>
+                <div>You can <a href="signIn">Login here!</a></div>
             </div>
             <form action="" method="post">
                 <div class="form-inputs">
