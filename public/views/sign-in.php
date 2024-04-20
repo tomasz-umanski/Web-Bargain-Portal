@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="/public/styles/style.css">
-    <link rel="stylesheet" type="text/css" href="/public/styles/authentication.css">
+    <link rel="stylesheet" type="text/css" href="/public/styles/auth.css">
     <title>Sign in</title>
 </head>
 <body>
@@ -18,17 +18,23 @@
             </div>
             <form action="signIn" method="Post">
                 <div class="form-inputs">
-                    <input class="form-input" type="username" name="email" id="email" placeholder="Enter e-mail or username">
-                    <div class="form-password-input">
-                        <input class="form-input" type="password" name="password" id="password" placeholder="Password">
-                        <span class="password-toggle"><i name="password_toggle" class="bi bi-eye-slash-fill"></i></span>
+                    <div>
+                        <div class="error"></div>
+                        <input class="form-input" type="username" name="username" id="username" placeholder="Enter e-mail or username">
+                    </div>
+                    <div>
+                        <div class="error"></div>
+                        <div class="form-password-input">
+                            <input class="form-input" type="password" name="password" id="password" placeholder="Password">
+                            <span class="password-toggle"><i name="password_toggle" class="bi bi-eye-slash-fill"></i></span>
+                        </div>
                     </div>
                     <?php require('partials/validations.php') ?>
-                    <input class="form-input button" type="submit" name="submit" value="Sign in">
+                    <input class="form-input button" type="submit" class="" name="submit_button" value="Login">
                 </div>
             </form>
         </div>
     </div>
 </body>
-    <script type="text/javascript" src="/public/scripts/authentication.js" defer></script>
+    <script type="text/javascript" src="/public/scripts/auth.js" defer></script>
 </html>

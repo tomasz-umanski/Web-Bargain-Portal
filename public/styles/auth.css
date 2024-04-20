@@ -68,6 +68,10 @@ body{
     cursor: pointer;
     color: #A7A3FF; 
 }
+.error {
+    color: var(--liked);
+    font-size: 12px;
+}
 .validations {
     color: var(--liked);
     margin-bottom: 30px;

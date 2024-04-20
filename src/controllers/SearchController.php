@@ -1,8 +1,8 @@
 <?php
 
-require_once 'AppController.php';
+require_once 'ContentController.php';
 
-class SearchController extends AppController {
+class SearchController extends ContentController {
 
     public function search($searchString) {
         $posts = $this->postRepository->getPostByQueryString($searchString);

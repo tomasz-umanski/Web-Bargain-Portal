@@ -1,8 +1,8 @@
 <?php
 
-require_once 'AppController.php';
+require_once 'ContentController.php';
 
-class NewPostController extends AppController {
+class NewPostController extends ContentController {
 
     public function newPost() {
         $this->render("new-post");

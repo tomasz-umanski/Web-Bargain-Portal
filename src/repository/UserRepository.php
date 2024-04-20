@@ -33,4 +33,42 @@ class UserRepository extends Repository {
         return $this->createUserFromData($user);
     }
 
+    public function userNameExists(string $userName): bool {
+        $stmt = $this->database->connect()->prepare('
+            SELECT COUNT(*) 
+            FROM users 
+            WHERE LOWER(user_name) = LOWER(:userName);
+        ');
+        $stmt->execute([':userName' => $userName]);
+    
+        return (bool) $stmt->fetchColumn();
+    }
+
+    public function emailExists(string $email): bool {
+        $stmt = $this->database->connect()->prepare('
+            SELECT COUNT(*) 
+            FROM users 
+            WHERE LOWER(email) = LOWER(:email);
+        ');
+        $stmt->execute([':email' => $email]);
+    
+        return (bool) $stmt->fetchColumn();
+    }
+
+    public function createUser(User $user): string {
+        $stmt = $this->database->connect()->prepare('
+            INSERT INTO users (user_name, email, password)
+            VALUES (?, ?, ?)
+            RETURNING id;
+        ');
+
+        $stmt->execute([
+            $user->getUserName(),
+            $user->getEmail(),
+            $user->getPassword()
+        ]);
+
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $data['id'];
+    }
 }

@@ -1,8 +1,8 @@
 <?php
 
-require_once 'AppController.php';
+require_once 'ContentController.php';
 
-class CategoryController extends AppController {
+class CategoryController extends ContentController {
 
     public function category($url) {
         $selectedCategory = $this->categoryRepository->getCategoryByUrl($url);

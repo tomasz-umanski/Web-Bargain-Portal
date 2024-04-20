@@ -2,7 +2,7 @@
     <?php
         if(isset($validations)){
             foreach($validations as $validation) {
-                echo $validation;
+                echo $validation . "<br>";
             }
         }
     ?>

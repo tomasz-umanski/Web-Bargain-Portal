@@ -1,6 +1,5 @@
 BEGIN;
 
-
 CREATE TABLE IF NOT EXISTS public.post
 (
     id serial NOT NULL,
@@ -14,16 +13,22 @@ CREATE TABLE IF NOT EXISTS public.post
     image_url text NOT NULL,
     creation_date timestamp with time zone NOT NULL,
     end_date timestamp with time zone NOT NULL,
-    user_id integer NOT NULL,
+    user_id uuid NOT NULL,
     category_id integer NOT NULL,
+    status text NOT NULL DEFAULT 'active',
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.users
 (
-    id serial NOT NULL,
+    id uuid NOT NULL DEFAULT gen_random_uuid(),
     user_name text NOT NULL,
-    PRIMARY KEY (id)
+    email text NOT NULL,
+    password text NOT NULL,
+    is_active boolean NOT NULL DEFAULT true,
+    PRIMARY KEY (id),
+    UNIQUE (user_name),
+    UNIQUE (email)
 );
 
 CREATE TABLE IF NOT EXISTS public.category
@@ -32,6 +37,16 @@ CREATE TABLE IF NOT EXISTS public.category
     name text NOT NULL,
     url text NOT NULL,
     icon text NOT NULL,
+    is_active boolean NOT NULL DEFAULT true,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.user_post
+(
+    id serial NOT NULL,
+    user_id uuid NOT NULL,
+    post_id integer NOT NULL,
+    action_type text NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -46,6 +61,22 @@ ALTER TABLE IF EXISTS public.post
 ALTER TABLE IF EXISTS public.post
     ADD FOREIGN KEY (category_id)
     REFERENCES public.category (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public.user_post
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public.user_post
+    ADD FOREIGN KEY (post_id)
+    REFERENCES public.post (id) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;

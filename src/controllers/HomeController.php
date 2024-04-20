@@ -1,10 +1,10 @@
 <?php
 
-require_once 'AppController.php';
+require_once 'ContentController.php';
 require_once __DIR__ . '/../models/Post.php';
 require_once __DIR__ . '/../repository/PostRepository.php';
 
-class DefaultController extends AppController {
+class HomeController extends ContentController {
     private const HOT = "Hot";
     private const NEW = "New";
     private const LAST_CALL = "Last Call";

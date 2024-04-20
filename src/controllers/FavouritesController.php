@@ -1,8 +1,8 @@
 <?php
 
-require_once 'AppController.php';
+require_once 'ContentController.php';
 
-class FavouritesController extends AppController {
+class FavouritesController extends ContentController {
     private const FAVOURITE_CATEGORIES = "Favourite categories";
     private const FAVOURITE_SEARCHES = "Favourite searches";
     private const FAVOURITE_DEALS = "Favourite deals";

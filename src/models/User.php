@@ -13,6 +13,10 @@ class User {
         $this->password = $password;
     }
 
+    public function setId($id) : void {
+        $this->id = $id;
+    }
+
     public function getId() {
         return $this->id;
     }
