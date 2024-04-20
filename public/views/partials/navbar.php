@@ -26,33 +26,40 @@
             </a>
         </div>
         <div class="navbar-section section-rigth">
-            <a class="navbar-button" href="/favourites" name="favourites">
+            <?php
+                $userLoggedIn = isset($_SESSION['user']);
+                $favouritesLink = $userLoggedIn ? '/favourites' : '/signIn';
+                $newPostLink = $userLoggedIn ? '/newPost' : '/signIn';
+            ?>
+            <a class="navbar-button" href="<?= $favouritesLink ?>" name="favourites">
                 <span class="navbar-icon"><i class="bi bi-star"></i></span>
                 <span class="navbar-label">Favourites</span>
             </a>
-            <a class="navbar-button" href="/newPost" name="new-post">
+            <a class="navbar-button" href="<?= $newPostLink ?>" name="new-post">
                 <span class="navbar-icon"><i class="bi bi-plus-circle"></i></span>
                 <span class="navbar-label">New post</span>
             </a>
             <div class="dropdown">
-                <button class="navbar-button" name="account" onclick="toggleDropdown('account')">
+                <a class="navbar-button" <?php if (!$userLoggedIn) : ?> href="<?= '/signIn' ?>" <?php endif; ?> name="account" <?= $userLoggedIn ? 'onclick="toggleDropdown(\'account\')"': '' ?>>
                     <span class="navbar-icon"><i class="bi bi-person"></i></span>
                     <span class="navbar-label">Account</span>
-                </button>
-                <div id="account_dropdown" class="dropdown-content account-dropdown">
-                    <a href="#" class="dropdown-link"> 
-                        <span>Change username</span>
-                    </a>
-                    <a href="#" class="dropdown-link"> 
-                        <span>Change e-mail</span>
-                    </a>
-                    <a href="#" class="dropdown-link"> 
-                        <span>Change password</span>
-                    </a>
-                    <a href="#" class="dropdown-link"> 
-                        <span>Log out</span>
-                    </a>
-                </div>
+                </a>
+                <?php if ($userLoggedIn) : ?>
+                    <div id="account_dropdown" class="dropdown-content account-dropdown">
+                        <a href="#" class="dropdown-link"> 
+                            <span>Change username</span>
+                        </a>
+                        <a href="#" class="dropdown-link"> 
+                            <span>Change e-mail</span>
+                        </a>
+                        <a href="#" class="dropdown-link"> 
+                            <span>Change password</span>
+                        </a>
+                        <a href="#" class="dropdown-link"> 
+                            <span>Log out</span>
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

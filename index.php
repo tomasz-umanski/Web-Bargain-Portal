@@ -1,6 +1,7 @@
 <?php
 require 'Router.php';
 
+session_start();
 
 $uri = trim($_SERVER['REQUEST_URI'], '/');
 $uri = parse_url($uri, PHP_URL_PATH);
