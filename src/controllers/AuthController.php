@@ -1,12 +1,9 @@
 <?php
 
 require_once 'AppController.php';
-require_once __DIR__ . '/../models/User.php';
-require_once __DIR__ . '/../repository/UserRepository.php';
 require_once __DIR__ . '/../services/AuthService.php';
 
 class AuthController extends AppController {
-
     private $authService;
 
     public function __construct()
@@ -16,11 +13,7 @@ class AuthController extends AppController {
     }
 
     public function logout() {
-        $_SESSION = [];
-        session_destroy();
-        $params = session_get_cookie_params();
-        setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
-    
+        $this->authService->logout();
         $this->redirect('/');
     }
 
@@ -29,22 +22,17 @@ class AuthController extends AppController {
             return $this->render("sign-in");
         }
 
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $validationErrors = $this->authService->validateSignIn($username, $password);
-
-        if (!empty($validationErrors)) {
-            return $this->render('sign-in', ['validations' => $validationErrors]);
-        }
+        $username = $_POST['username'] ?? '';
+        $password = $_POST['password'] ?? '';
 
         $user = $this->authService->signIn($username, $password);
         if (!$user) {
-            $validationErrors['userExists'] = 'User not found or wrong password!';
+            sleep(1);
+            $validationErrors['userNotExists'] = 'User not found or wrong password!';
             return $this->render('sign-in', ['validations' => $validationErrors]);
         }
 
-        $this->startSession($user);
+        $this->authService->startSession($user);
         $this->redirect('/');
     }
 
@@ -53,27 +41,20 @@ class AuthController extends AppController {
             return $this->render("sign-up");
         }
 
-        $email = $_POST['email'];
-        $userName = $_POST['username'];
-        $password = $_POST['password'];
-        $confirmPassword = $_POST['confirm_password'];
+        $email = $_POST['email'] ?? '';
+        $username = $_POST['username'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $confirmPassword = $_POST['confirm_password'] ?? '';
 
-        $validationErrors = $this->authService->validateSignUp($userName, $email, $password, $confirmPassword);
-
-        if (!empty($validationErrors)) {
+        $user = $this->authService->signUp($username, $email, $password);
+        if (!$user) {
+            sleep(1);
+            $validationErrors['userExists'] = 'User with this username or email already exists!';
             return $this->render('sign-up', ['validations' => $validationErrors]);
         }
 
-        $user = $this->authService->signUp($userName, $email, $password);
-        $this->startSession($user);
+        $this->authService->startSession($user);
         $this->redirect('/');
-    }
-
-    private function startSession($user) {
-        $_SESSION['user'] = [
-            'id' => $user->getId(),
-            'email' => $user->getEmail()
-        ];
     }
 
     private function redirect($path) {

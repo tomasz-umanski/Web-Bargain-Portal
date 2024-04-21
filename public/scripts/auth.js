@@ -40,6 +40,8 @@ form.addEventListener('submit', e => {
     e.preventDefault();
     if (validateInputs()) {
         form.submit();
+        var loader = document.getElementById("loader");
+        loader.classList.remove("hidden");
     }
 })
 

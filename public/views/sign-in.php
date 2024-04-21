@@ -35,6 +35,7 @@
             </form>
         </div>
     </div>
+    <?php require('partials/loader.php') ?>
 </body>
     <script type="text/javascript" src="/public/scripts/auth.js" defer></script>
 </html>

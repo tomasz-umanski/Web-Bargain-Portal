@@ -9,20 +9,7 @@ class AuthService {
 
     public function __construct()
     {
-        $this->userRepository = new UserRepository();
-    }
-
-    public function validateSignIn($username, $password) {
-        $validationErrors = [];
-
-        if (empty($username)) {
-            $validationErrors['username'] = 'Username is required!';
-        }
-        if (empty($password)) {
-            $validationErrors['password'] = 'Password is required!';
-        }
-
-        return $validationErrors;
+        $this->userRepository = new UserRepository();;
     }
 
     public function signIn($username, $password) {
@@ -33,31 +20,34 @@ class AuthService {
         return $user;
     }
 
-    public function validateSignUp($username, $email, $password, $confirmPassword) {
-        $validationErrors = [];
-
-        if (empty($username)) {
-            $validationErrors['username'] = 'Username is required!';
-        }
-        if (empty($email)) {
-            $validationErrors['email'] = 'Email is required!';
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $validationErrors['email'] = 'Invalid email format!';
-        }
-        if (empty($password)) {
-            $validationErrors['password'] = 'Password is required!';
-        } elseif ($password !== $confirmPassword) {
-            $validationErrors['confirm_password'] = 'Passwords do not match!';
-        }
-
-        return $validationErrors;
-    }
-
     public function signUp($username, $email, $password) {
+        $userNameExists = $this->userRepository->userNameExists($username);
+        if ($userNameExists) {
+            return false;
+        } 
+        $emailExists = $this->userRepository->emailExists($email);
+        if ($emailExists) {
+            return false;
+        }
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $user = new User(0, $username, $email, $hashedPassword);
         $createdUserId = $this->userRepository->createUser($user);
         $user->setId($createdUserId);
         return $user;
+    }
+
+    public function startSession($user) {
+        $_SESSION['user'] = [
+            'id' => $user->getId(),
+            'email' => $user->getEmail()
+        ];
+        session_regenerate_id(true);
+    }
+
+    public function logout() {
+        $_SESSION = [];
+        session_destroy();
+        $params = session_get_cookie_params();
+        setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
     }
 }
