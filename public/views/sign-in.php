@@ -16,16 +16,20 @@
                 <div>If you don’t have an account</div>
                 <div>You can <a href="signUp">Register here!</a></div>
             </div>
-            <form action="signIn" method="Post">
+            <form action="login" method="Post">
                 <div class="form-inputs">
                     <div>
                         <div class="error"></div>
-                        <input class="form-input" type="username" name="username" id="username" placeholder="Enter e-mail or username">
+                        <input class="form-input" type="username" name="username" id="username" placeholder="Enter e-mail or username"
+                            value = "<?=old('username')?>"
+                        >
                     </div>
                     <div>
                         <div class="error"></div>
                         <div class="form-password-input">
-                            <input class="form-input" type="password" name="password" id="password" placeholder="Password">
+                            <input class="form-input" type="password" name="password" id="password" placeholder="Password"
+                            value = "<?=old('password')?>"
+                            >
                             <span class="password-toggle"><i name="password_toggle" class="bi bi-eye-slash-fill"></i></span>
                         </div>
                     </div>

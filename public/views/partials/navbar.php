@@ -35,7 +35,7 @@
                 <span class="navbar-label">New post</span>
             </a>
             <?php
-                $userLoggedIn = isset($_SESSION['user']);
+                $userLoggedIn = userSessionExists();
             ?>
             <div class="dropdown">
                 <a class="navbar-button" <?php if (!$userLoggedIn) : ?> href="<?= '/signIn' ?>" <?php endif; ?> name="account" <?= $userLoggedIn ? 'onclick="toggleDropdown(\'account\')"': '' ?>>

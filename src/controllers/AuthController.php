@@ -2,6 +2,7 @@
 
 require_once 'AppController.php';
 require_once __DIR__ . '/../services/AuthService.php';
+require_once __DIR__ . '/../../core/Session.php';
 
 class AuthController extends AppController {
     private $authService;
@@ -17,30 +18,26 @@ class AuthController extends AppController {
         $this->redirect('/');
     }
 
-    public function signIn() {
-        if (!$this->isPost()) {
-            return $this->render("sign-in");
-        }
-
+    public function login() {
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
 
         $user = $this->authService->signIn($username, $password);
         if (!$user) {
             sleep(1);
-            $validationErrors['userNotExists'] = 'User not found or wrong password!';
-            return $this->render('sign-in', ['validations' => $validationErrors]);
+            return $this->redirect('/signIn');
         }
 
         $this->authService->startSession($user);
         $this->redirect('/');
     }
 
-    public function signUp() {
-        if (!$this->isPost()) {
-            return $this->render("sign-up");
-        }
+    public function signIn() {
+        $validationErrors = Session::get('validations');
+        return $this->render('sign-in', ['validations' => $validationErrors]);
+    }
 
+    public function register() {
         $email = $_POST['email'] ?? '';
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
@@ -49,12 +46,16 @@ class AuthController extends AppController {
         $user = $this->authService->signUp($username, $email, $password);
         if (!$user) {
             sleep(1);
-            $validationErrors['userExists'] = 'User with this username or email already exists!';
-            return $this->render('sign-up', ['validations' => $validationErrors]);
+            return $this->redirect('/signUp');
         }
 
         $this->authService->startSession($user);
         $this->redirect('/');
+    }
+
+    public function signUp() {
+        $validationErrors = Session::get('validations');
+        return $this->render('sign-up', ['validations' => $validationErrors]);
     }
 
     private function redirect($path) {

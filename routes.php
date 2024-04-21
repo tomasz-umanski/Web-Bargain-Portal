@@ -19,7 +19,7 @@ $router->get('favouriteDeals', 'FavouritesController')->only('auth');
 $router->get('newPost', 'NewPostController')->only('auth');
 
 $router->get('signIn', 'AuthController')->only('guest');
+$router->post('login', 'AuthController')->only('guest');
 $router->get('signUp', 'AuthController')->only('guest');
-$router->post('signIn', 'AuthController')->only('guest');
-$router->post('signUp', 'AuthController')->only('guest');
+$router->post('register', 'AuthController')->only('guest');
 $router->delete('logout', 'AuthController')->only('auth');

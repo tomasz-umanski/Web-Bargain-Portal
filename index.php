@@ -1,6 +1,8 @@
 <?php
 
 require 'core/Router.php';
+require_once 'core/Session.php';
+require_once 'core/functions.php';
 
 session_start();
 
@@ -12,3 +14,4 @@ $router = new Router();
 require 'routes.php';
 
 $router->run($uri, $method);
+Session::unflash();
