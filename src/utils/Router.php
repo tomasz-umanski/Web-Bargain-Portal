@@ -7,8 +7,7 @@ require_once 'src/controllers/NewPostController.php';
 require_once 'src/controllers/CategoryController.php';
 require_once 'src/controllers/SearchController.php';
 require_once 'src/controllers/AuthController.php';
-require_once 'core/middleware/Middleware.php';
-
+require_once 'middleware/Middleware.php';
 
 class Router {
     protected $routes = [];
@@ -19,7 +18,6 @@ class Router {
             'middleware' => $middleware
         ];
         return $this;
-
     }
 
     public function get($uri, $controller) {
@@ -39,6 +37,9 @@ class Router {
         $lastRouteKey = key($this->routes);
         $this->routes[$lastRouteKey][array_key_last($lastRoute)]['middleware'] = $key;
         return $this;
+    }
+    public function previousUrl() {
+        return $_SERVER['HTTP_REFERER'];
     }
 
     public function run($uri, $method) {

@@ -36,11 +36,16 @@
             </a>
             <?php
                 $userLoggedIn = userSessionExists();
+                if ($userLoggedIn) {
+                    $accountLabel = "Account"; 
+                } else {
+                    $accountLabel = "Sign In"; 
+                }
             ?>
             <div class="dropdown">
                 <a class="navbar-button" <?php if (!$userLoggedIn) : ?> href="<?= '/signIn' ?>" <?php endif; ?> name="account" <?= $userLoggedIn ? 'onclick="toggleDropdown(\'account\')"': '' ?>>
                     <span class="navbar-icon"><i class="bi bi-person"></i></span>
-                    <span class="navbar-label">Account</span>
+                    <span class="navbar-label"><?=$accountLabel?></span>
                 </a>
                 <?php if ($userLoggedIn) : ?>
                     <div id="account_dropdown" class="dropdown-content account-dropdown">

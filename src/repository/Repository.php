@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/../../core/Database.php';
+require_once __DIR__.'/../utils/Database.php';
 
 class Repository {
     protected $database;

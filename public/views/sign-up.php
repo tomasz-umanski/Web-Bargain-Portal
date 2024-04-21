@@ -19,19 +19,19 @@
             <form action="register" method="post">
                 <div class="form-inputs">
                     <div>
-                        <div class="error"></div>
+                        <div class="error"><?=$validations['email']?></div>
                         <input class="form-input" type="username" name="email" id="email" placeholder="Enter e-mail"
                         value = "<?=old('email')?>"
                         >
                     </div>
                     <div>
-                        <div class="error"></div>
+                        <div class="error"><?=$validations['username']?></div>
                         <input class="form-input" type="username" name="username" id="username" placeholder="Enter username"
                         value = "<?=old('username')?>"
                         >
                     </div>
                     <div>
-                        <div class="error"></div>
+                        <div class="error"><?=$validations['password']?></div>
                         <div class="form-password-input">
                             <input class="form-input" type="password" name="password" id="password" placeholder="Password"
                             value = "<?=old('password')?>"
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="error"></div>
+                        <div class="error"><?=$validations['confirmPassword']?></div>
                         <div class="form-password-input">
                             <input class="form-input" type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password"
                             value = "<?=old('confirmPassword')?>"

@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../repository/UserRepository.php';
 require_once __DIR__ . '/../models/User.php';
-require_once __DIR__ . '/../../core/Session.php';
+require_once __DIR__ . '/../utils/Session.php';
 
 class AuthService {
     
@@ -12,47 +12,28 @@ class AuthService {
         $this->userRepository = new UserRepository();;
     }
 
-    public function signIn($username, $password) {
-        Session::flash('old', [
-            'username' => $username,
-            'password' => $password
-        ]);
+    public function signInAttempt($username, $password) {
         $user = $this->userRepository->getUser($username);
         if (!$user || !password_verify($password, $user->getPassword())) {
-            $validationErrors['userNotExists'] = 'User not found or wrong password!';
-            Session::flash('validations', $validationErrors);
-            return false;
+            return false; 
         }
-        return $user;
+        Session::startUserSession($user);
+        return true;
     }
 
-    public function signUp($username, $email, $password) {
-        Session::flash('old', [
-            'username' => $username,
-            'password' => $password,
-            'confirmPassword' => $password,
-            'email' => $email
-        ]);
+    public function signUpAttempt($username, $email, $password) {
         $userNameExists = $this->userRepository->userNameExists($username);
         if ($userNameExists) {
-            $validationErrors['userNameExists'] = 'User with this username already exists!';
-            Session::flash('validations', $validationErrors);
             return false;
         } 
         $emailExists = $this->userRepository->emailExists($email);
         if ($emailExists) {
-            $validationErrors['emailExists'] = 'User with this email already exists!';
-            Session::flash('validations', $validationErrors);
             return false;
         }
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $user = new User(0, $username, $email, $hashedPassword);
-        $createdUserId = $this->userRepository->createUser($user);
+        $this->userRepository->createUser($user);
         $user->setId($createdUserId);
-        return $user;
-    }
-
-    public function startSession($user) {
         Session::startUserSession($user);
     }
 

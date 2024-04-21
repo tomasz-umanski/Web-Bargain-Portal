@@ -19,13 +19,13 @@
             <form action="login" method="Post">
                 <div class="form-inputs">
                     <div>
-                        <div class="error"></div>
+                        <div class="error"><?=$validations['username']?></div>
                         <input class="form-input" type="username" name="username" id="username" placeholder="Enter e-mail or username"
                             value = "<?=old('username')?>"
                         >
                     </div>
                     <div>
-                        <div class="error"></div>
+                        <div class="error"><?=$validations['password']?></div>
                         <div class="form-password-input">
                             <input class="form-input" type="password" name="password" id="password" placeholder="Password"
                             value = "<?=old('password')?>"
