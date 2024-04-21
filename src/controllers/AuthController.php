@@ -15,6 +15,15 @@ class AuthController extends AppController {
         $this->authService = new AuthService();
     }
 
+    public function logout() {
+        $_SESSION = [];
+        session_destroy();
+        $params = session_get_cookie_params();
+        setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+    
+        $this->redirect('/');
+    }
+
     public function signIn() {
         if (!$this->isPost()) {
             return $this->render("sign-in");

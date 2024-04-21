@@ -30,6 +30,10 @@ class Router {
         return $this->add('POST', $uri, $controller);
     }
 
+    public function delete($uri, $controller) {
+        return $this->add('DELETE', $uri, $controller);
+    }
+
     public function only($key) {
         $lastRoute = end($this->routes);
         $lastRouteKey = key($this->routes);
@@ -40,22 +44,16 @@ class Router {
     public function run($uri, $method) {
         $action = explode("/", $uri)[0];
         $route = $this->routes[$method][$action];
-        $controllerName = $route['controller'] ?? NotFoundController::class;
+        $controllerName = $route['controller'];
         
         if (!class_exists($controllerName)) {
-            $controllerName = NotFoundController::class;
+            $controller = new NotFoundController();
             http_response_code(404);
+            $controller->renderNotFoundPage();
+            die();
         }
 
         Middleware::resolve($route['middleware']);
-        // $middleware = $route['middleware'] ?? null;
-        // if ($middleware == 'auth') {
-        //     if (!isset($_SESSION['user'])) {
-        //         $url = "http://$_SERVER[HTTP_HOST]$path";
-        //         header("Location: {$url}/signIn");
-        //         exit();
-        //     }
-        // }
         $controller = new $controllerName();
         $action = $action ?: 'index';
         $id = explode("/", $uri)[1] ?? '';

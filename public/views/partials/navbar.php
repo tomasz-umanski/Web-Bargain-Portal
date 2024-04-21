@@ -44,18 +44,10 @@
                 </a>
                 <?php if ($userLoggedIn) : ?>
                     <div id="account_dropdown" class="dropdown-content account-dropdown">
-                        <a href="#" class="dropdown-link"> 
-                            <span>Change username</span>
-                        </a>
-                        <a href="#" class="dropdown-link"> 
-                            <span>Change e-mail</span>
-                        </a>
-                        <a href="#" class="dropdown-link"> 
-                            <span>Change password</span>
-                        </a>
-                        <a href="#" class="dropdown-link"> 
-                            <span>Log out</span>
-                        </a>
+                        <form action="/logout" method="POST">
+                            <input type="hidden" name = "_method" value = "DELETE">
+                            <button class="dropdown-link"> Log out </button>
+                        </form>
                     </div>
                 <?php endif; ?>
             </div>

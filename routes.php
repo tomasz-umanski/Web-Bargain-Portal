@@ -22,3 +22,4 @@ $router->get('signIn', 'AuthController')->only('guest');
 $router->get('signUp', 'AuthController')->only('guest');
 $router->post('signIn', 'AuthController')->only('guest');
 $router->post('signUp', 'AuthController')->only('guest');
+$router->delete('logout', 'AuthController')->only('auth');

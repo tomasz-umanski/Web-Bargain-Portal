@@ -114,6 +114,8 @@ body{
     text-align: left;
     border-radius: 15px;
     transition-duration: 100ms;
+    background: none;
+    border: none;
 }
 .dropdown-link:hover{
     border-radius: 15px;
