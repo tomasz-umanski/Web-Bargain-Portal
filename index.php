@@ -1,26 +1,14 @@
 <?php
-require 'Router.php';
+
+require 'core/Router.php';
 
 session_start();
 
 $uri = trim($_SERVER['REQUEST_URI'], '/');
 $uri = parse_url($uri, PHP_URL_PATH);
+$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
-Router::get('', 'HomeController');
-Router::get('new', 'HomeController');
-Router::get('lastCall', 'HomeController');
+$router = new Router();
+require 'routes.php';
 
-Router::get('category', 'CategoryController');
-
-Router::get('search', 'SearchController');
-
-Router::get('favourites', 'FavouritesController');
-Router::get('favouriteSearches', 'FavouritesController');
-Router::get('favouriteDeals', 'FavouritesController');
-
-Router::get('newPost', 'NewPostController');
-
-Router::post('signIn', 'AuthController');
-Router::post('signUp', 'AuthController');
-
-Router::run($uri);
+$router->run($uri, $method);

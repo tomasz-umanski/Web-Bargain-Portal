@@ -26,19 +26,17 @@
             </a>
         </div>
         <div class="navbar-section section-rigth">
-            <?php
-                $userLoggedIn = isset($_SESSION['user']);
-                $favouritesLink = $userLoggedIn ? '/favourites' : '/signIn';
-                $newPostLink = $userLoggedIn ? '/newPost' : '/signIn';
-            ?>
-            <a class="navbar-button" href="<?= $favouritesLink ?>" name="favourites">
+            <a class="navbar-button" href=/favourites name="favourites">
                 <span class="navbar-icon"><i class="bi bi-star"></i></span>
                 <span class="navbar-label">Favourites</span>
             </a>
-            <a class="navbar-button" href="<?= $newPostLink ?>" name="new-post">
+            <a class="navbar-button" href="/newPost" name="new-post">
                 <span class="navbar-icon"><i class="bi bi-plus-circle"></i></span>
                 <span class="navbar-label">New post</span>
             </a>
+            <?php
+                $userLoggedIn = isset($_SESSION['user']);
+            ?>
             <div class="dropdown">
                 <a class="navbar-button" <?php if (!$userLoggedIn) : ?> href="<?= '/signIn' ?>" <?php endif; ?> name="account" <?= $userLoggedIn ? 'onclick="toggleDropdown(\'account\')"': '' ?>>
                     <span class="navbar-icon"><i class="bi bi-person"></i></span>
