@@ -16,6 +16,8 @@ class RegisterForm extends Form {
 
         if (!Validator::string($attributes['username'])) {
             $this->errors['username'] = 'Username is required.';
+        } else if (!Validator::string($attributes['username'], 3)) {
+            $this->errors['username'] = 'Username must be at least 3 characters.';
         }
         
         if (!Validator::string($attributes['password'])) {

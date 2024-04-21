@@ -6,6 +6,10 @@ function old($key, $defaul = null) {
     return Session::get('old')[$key] ?? $default;
 }
 
+function getFromSession($key) {
+    return Session::get($key);
+}
+
 function userSessionExists() {
     return Session::has('user');
 }

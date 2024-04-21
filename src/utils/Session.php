@@ -29,7 +29,8 @@ class Session {
     public static function startUserSession($user) {
         $userSession = [
             'id' => $user->getId(),
-            'email' => $user->getEmail()
+            'email' => $user->getEmail(),
+            'username' => $user->getUserName()
         ];
         self::put('user', $userSession);
         session_regenerate_id(true);

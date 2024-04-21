@@ -49,6 +49,7 @@
                 </a>
                 <?php if ($userLoggedIn) : ?>
                     <div id="account_dropdown" class="dropdown-content account-dropdown">
+                        <span class="user-account-details"> <?= getFromSession('user')['username'] ?> </span>
                         <form action="/logout" method="POST">
                             <input type="hidden" name = "_method" value = "DELETE">
                             <button class="dropdown-link"> Log out </button>
