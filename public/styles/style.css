@@ -124,6 +124,14 @@ body{
 .dropdown-link:active{
     opacity: 0.5;
 }
+.user-account-details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 20px;
+    margin-bottom: 10px;
+}
 /* ======================= SEARCH BOX STYLING ======================= */
 .search-button{
     display: flex;
@@ -403,8 +411,15 @@ footer {
     justify-content: center;
     align-items: center;
 }
+.error {
+    color: var(--liked);
+    font-size: 12px;
+}
+.validations {
+    color: var(--liked);
+    margin-bottom: 30px;
+}
 /* ================= LOADER STYLING ================= */
-
 .loader-wrapper {
     width: 100%;
     height: 100%;
@@ -430,15 +445,6 @@ footer {
     width: 100%;
     background-color: #fff;
     animation: loader-inner 2s infinite ease-in;
-}
-.user-account-details{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* border-bottom: solid var(--primary) 1px; */
-    color: var(--primary);
-    font-size: 20px;
-    margin-bottom: 10px;
 }
 @keyframes loader {
     0% { transform: rotate(0deg);}

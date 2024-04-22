@@ -3,6 +3,11 @@ const form = document.querySelector("form");
 const togglePassword = form.querySelector('i[name="password_toggle"]');
 const confirmTogglePassword = form.querySelector('i[name="confirm_password_toggle"]');
 
+const inputFields = {
+    'password': document.getElementById('password'),
+    'confirmPassword': document.getElementById('confirm_password')
+};
+
 function changePasswordVisibility(passwordField, toggleIcon) {
     const isPasswordVisible = passwordField.type === "text";
     passwordField.type = isPasswordVisible ? "password" : "text";

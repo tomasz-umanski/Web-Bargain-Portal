@@ -35,6 +35,9 @@ input, label {
     background-color: #4285F4;
     color: white;
 }
+.form-photo-input label span{
+    margin-left: 10px;
+}
 .form-photo-input label:hover{
     opacity: 0.7;
 }
@@ -65,7 +68,7 @@ textarea{
 .horizontal{
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     width: 100%;
     gap: 30px;
@@ -74,9 +77,6 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-input[type="number"] {
-    -moz-appearance: textfield;
 }
 input[type="file"] {
     display: none;
@@ -113,7 +113,12 @@ input[type="date"] {
         display: flex;
         flex-direction: column;
     }
-    input[type="date"] { 
+    input[type="datetime-local"] { 
         display: flex;
+        width: calc(96vw - 60px);
+    }
+    .horizontal {
+        flex-direction: column;
+        gap: 0px;
     }
 }

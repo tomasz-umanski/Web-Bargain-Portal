@@ -7,28 +7,40 @@ class RegisterForm extends Form {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validateEmail($attributes['email']);
+        $this->validateUsername($attributes['username']);
+        $this->validatePassword($attributes['password']);
+        $this->validateConfirmPassword($attributes['password'], $attributes['confirmPassword']);
+    }
 
-        if (!Validator::string($attributes['email'])) {
+    private function validateEmail($email) {
+        if (!Validator::string($email)) {
             $this->errors['email'] = 'Email is required.';
-        } else if (!Validator::email($attributes['email'])) {
+        } else if (!Validator::email($email)) {
             $this->errors['email'] = 'Provide a valid email address.';
         }
+    }
 
-        if (!Validator::string($attributes['username'])) {
+    private function validateUsername($username) {
+        if (!Validator::string($username)) {
             $this->errors['username'] = 'Username is required.';
-        } else if (!Validator::string($attributes['username'], 3)) {
+        } else if (!Validator::string($username, 3)) {
             $this->errors['username'] = 'Username must be at least 3 characters.';
         }
-        
-        if (!Validator::string($attributes['password'])) {
+    }
+
+    private function validatePassword($password) {
+        if (!Validator::string($password)) {
             $this->errors['password'] = 'Password is required.';
-        } else if (!Validator::string($attributes['password'], 8)) {
+        } else if (!Validator::string($password, 8)) {
             $this->errors['password'] = 'Password must be at least 8 characters.';
         }
+    }
 
-        if (!Validator::string($attributes['confirmPassword'])) {
+    private function validateConfirmPassword($password, $confirmPassword) {
+        if (!Validator::string($confirmPassword)) {
             $this->errors['confirmPassword'] = 'Confirm your password.';
-        } else if ($attributes['password'] != $attributes['confirmPassword']) {
+        } else if ($password != $confirmPassword) {
             $this->errors['confirmPassword'] = "Passwords don't match.";
         }
     }

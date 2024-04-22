@@ -52,7 +52,7 @@ class AuthController extends AppController {
             $attributes['username'], $attributes['email'], $attributes['password']
         );
 
-        if(!$signedIn) {
+        if(!$signedUp) {
             sleep(1);
             $form->error(
                 'auth', 'User with this email or username already exists.'

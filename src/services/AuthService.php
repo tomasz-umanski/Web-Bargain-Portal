@@ -35,6 +35,7 @@ class AuthService {
         $this->userRepository->createUser($user);
         $user->setId($createdUserId);
         Session::startUserSession($user);
+        return true;
     }
 
     public function logout() {

@@ -7,12 +7,18 @@ class LoginForm extends Form {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validateUsername($attributes['username']);
+        $this->validatePassword($attributes['password']);
+    }
 
-        if (!Validator::string($attributes['username'])) {
-            $this->errors['username'] = 'Field is required.';
+    private function validateUsername($username) {
+        if (!Validator::string($username)) {
+            $this->errors['username'] = 'Username is required.';
         }
-        
-        if (!Validator::string($attributes['password'])) {
+    }
+
+    private function validatePassword($password) {
+        if (!Validator::string($password)) {
             $this->errors['password'] = 'Password is required.';
         }
     }
