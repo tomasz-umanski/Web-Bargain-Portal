@@ -7,11 +7,9 @@ require_once __DIR__ . '/../services/PostService.php';
 
 class NewPostController extends ContentController {
     private static $instance = null;
-    private $postService;
 
     private function __construct() {
         parent::__construct();
-        $this->postService = new PostService();
     }
 
     public static function getInstance() {
@@ -34,7 +32,7 @@ class NewPostController extends ContentController {
             'file' => $_FILES['file']
         ]);
 
-        $fileDestination = FileService::moveUploadedFile($attributes['file']);
+        $fileName = FileService::moveUploadedFile($attributes['file']);
 
         if (!$fileDestination) {
             $form->error(
@@ -51,7 +49,7 @@ class NewPostController extends ContentController {
             $attributes['deliveryPrice'],
             $attributes['endDate'],
             $attributes['description'],
-            $fileDestination
+            $fileName
         );
 
         redirect('/');

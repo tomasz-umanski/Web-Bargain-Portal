@@ -11,7 +11,7 @@ class FileService {
         if (!move_uploaded_file($file['tmp_name'], $destination)) {
             return null;
         }
-        return $destination;
+        return $filename;
     }
 
     private static function generateUniqueFilename($pathinfo) {

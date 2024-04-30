@@ -2,12 +2,25 @@
 
 require_once __DIR__ . '/../repository/PostRepository.php';
 require_once __DIR__ . '/../models/Post.php';
+require_once __DIR__ . '/../models/PostDto.php';
 
 class PostService {
     private $postRepository;
     
     public function __construct() {
         $this->postRepository = new PostRepository();
+    }
+
+    public function getHotPosts() {
+        return $this->postRepository->getHotPosts();
+    }
+
+    public function getNewPosts() {
+        return $this->postRepository->getNewPosts();
+    }
+
+    public function getLastCallPosts() {
+        return $this->postRepository->getLastCallPosts();
     }
 
     public function createPostAttempt($offerUrl, $title, $categoryId, $newPrice, $oldPrice, $deliveryPrice, $endDate, $description, $imageUrl) : void {

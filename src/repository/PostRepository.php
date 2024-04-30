@@ -2,6 +2,7 @@
 
 require_once 'Repository.php';
 require_once __DIR__ . '/../models/Post.php';
+require_once __DIR__ . '/../models/PostDto.php';
 
 class PostRepository extends Repository {
 
@@ -42,40 +43,74 @@ class PostRepository extends Repository {
         ]);
     }
 
-
-
     public function getHotPosts(): array {
-        $query = '
-            SELECT p.*, u.user_name
+        $query = "
+            SELECT p.*, u.user_name, c.name AS category_name
             FROM post p
             JOIN users u ON p.user_id = u.id
-            WHERE p.end_date > NOW()
+            JOIN category c ON p.category_id = c.id
+            WHERE p.end_date > NOW() AND p.status = 'active'
             ORDER BY p.likes_count DESC;
-        ';
+        ";
         return $this->fetchPostsByQuery($query);
     }
 
     public function getNewPosts(): array {
-        $query = '
-            SELECT p.*, u.user_name
+        $query = "
+            SELECT p.*, u.user_name, c.name AS category_name
             FROM post p
             JOIN users u ON p.user_id = u.id
-            WHERE p.end_date > NOW()
+            JOIN category c ON p.category_id = c.id
+            WHERE p.end_date > NOW() AND p.status = 'active'
             ORDER BY p.creation_date DESC;
-        ';
+        ";
         return $this->fetchPostsByQuery($query);
     }
 
     public function getLastCallPosts(): array {
-        $query = '
-            SELECT p.*, u.user_name
+        $query = "
+            SELECT p.*, u.user_name, c.name AS category_name
             FROM post p
             JOIN users u ON p.user_id = u.id
-            WHERE p.end_date > NOW()
+            JOIN category c ON p.category_id = c.id
+            WHERE p.end_date > NOW() AND p.status = 'active'
             ORDER BY p.end_date ASC;
-        ';
+        ";
         return $this->fetchPostsByQuery($query);
     }
+
+    private function fetchPostsByQuery(string $query): array {
+        $result = [];
+        $statement = $this->database->connect()->prepare($query);
+        $statement->execute();
+        $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($posts as $post) {
+            $result[] = $this->createPostFromData($post);
+        }
+
+        return $result;
+    }
+
+    private function createPostFromData(array $post): PostDto {
+        return new PostDto(
+            $post['id'],
+            $post['title'],
+            $post['description'],
+            $post['new_price'],
+            $post['old_price'],
+            $post['delivery_price'],
+            $post['likes_count'],
+            $post['offer_url'],
+            $post['image_url'],
+            $post['creation_date'],
+            $post['end_date'],
+            $post['user_name'],
+            $post['category_name'],
+            $post['status']
+        );
+    }
+
 
     public function getPostByQueryString(string $searchString): array {
         $result = [];
@@ -120,49 +155,10 @@ class PostRepository extends Repository {
         return $result;
     }
 
-    private function determineDeliveryPriceString($deliveryPrice): string {
-        return ($deliveryPrice == 0) ? 'Free delivery' : $deliveryPrice . ' zł';
-    }
-    
-    private function toDiffDateString($dateString): string {
-        $date = new DateTime($dateString);
-        $currentDate = new DateTime();
-        $interval = $date->diff($currentDate);
-        $totalHours = $interval->days * 24 + $interval->h;
-        if ($interval->days > 0) {
-            return "$interval->days d $interval->h h";
-        } else {
-            return "$totalHours h";
-        }
-    }
 
-    private function fetchPostsByQuery(string $query): array {
-        $result = [];
-        $statement = $this->database->connect()->prepare($query);
-        $statement->execute();
-        $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($posts as $post) {
-            $result[] = $this->createPostFromData($post);
-        }
 
-        return $result;
-    }
 
-    private function createPostFromData(array $post): Post {
-        return new Post(
-            $post['id'],
-            $post['title'],
-            $post['description'],
-            $post['old_price'],
-            $post['new_price'],
-            $this->determineDeliveryPriceString($post['delivery_price']),
-            $post['likes_count'],
-            $post['offer_url'],
-            $post['image_url'],
-            $this->toDiffDateString($post['creation_date']),
-            $this->toDiffDateString($post['end_date']),
-            $post['user_name']
-        );
-    }
+
+
 }

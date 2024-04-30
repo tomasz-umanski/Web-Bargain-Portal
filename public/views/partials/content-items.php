@@ -8,11 +8,13 @@
             <div class="content-item">
                 <div class="content-item-grid">
                     <div class="content-image">
-                        <img src="/public/assets/images/<?= $post->getImageUrl(); ?>" alt="item image">
+                        <div class="crop">
+                            <img src="/public/uploads/<?= $post->getImageUrl(); ?>" alt="item image">
+                        </div>
                     </div>
                     <div class="content-user-data">
                         <span><i class="bi bi-person-circle"></i></span>
-                        <p class="content-user-data-username"><?= $post->getUser();?></p>
+                        <p class="content-user-data-username"><?= $post->getUserName();?></p>
                         <p class="content-spacer"> - </p>
                         <p class="content-user-data-upload-date"> <?= $post->getCreationDateDiff() ?> </p>
                         <div class="content-time-left">
