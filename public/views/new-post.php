@@ -40,9 +40,15 @@
                                 <span class="label-name">Category</span>
                                 <span class="label-tag">(mandatory)</span>
                             </label>
-                            <input type="text" id="category" name="category"
-                            value = "<?=old('category')?>"
-                            >
+                            <select name="category" id="category">
+                                <?php foreach ($categories as $category) : ?>
+                                    <?php $categoryId = $category->getId(); ?>
+                                    <option value="<?= $categoryId ?>" <?= ($categoryId == old('category')) ? 'selected' : '' ?>>
+                                        <?= $category->getName() ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+
                             <div class="error"><?=$validations['category']?></div>
                         </div>
                     </div>
@@ -100,7 +106,7 @@
                         <div class="error"><?=$validations['description']?></div>
                     </div>
                     <div class="form-photo-input">
-                        <label for="photo"><i class="bi bi-upload"></i> <span>Upload Photo</span> </label>
+                        <label for="photo"><i class="bi bi-upload"></i> <span>Upload photo</span> </label>
                         <input type="file" id="photo" name="file" accept="image/*">
                     </div>
                     <div class="error"><?=$validations['file']?></div>

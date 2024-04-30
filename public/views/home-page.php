@@ -9,6 +9,16 @@
 </head>
 <body>
     <div class="container">
+        <?php
+            $postCreationMessage = getFromSession('postCreationMessage');
+            if (!!$postCreationMessage) {
+                ?>
+                <script>
+                    alert('<?php echo $postCreationMessage; ?>');
+                </script>
+            <?php
+            }
+        ?>
         <?php require('partials/navbar.php') ?>
         <?php require('partials/subnav.php') ?>
         <div class="content">

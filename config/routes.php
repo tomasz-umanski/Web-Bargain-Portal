@@ -18,6 +18,7 @@ $router->get('favouriteDeals', 'FavouritesController', 'auth');
 
 $router->get('newPost', 'NewPostController', 'auth');
 $router->post('createPost', 'NewPostController', 'auth');
+$router->get('createdPost', 'NewPostController', 'auth');
 
 $router->get('signIn', 'AuthController', 'guest');
 $router->post('login', 'AuthController', 'guest');

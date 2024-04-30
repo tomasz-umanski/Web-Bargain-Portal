@@ -5,6 +5,45 @@ require_once __DIR__ . '/../models/Post.php';
 
 class PostRepository extends Repository {
 
+    public function createPost(Post $post) : void {
+        $statement = $this->database->connect()->prepare('
+            INSERT INTO public.post (
+                title, 
+                description, 
+                new_price, 
+                old_price, 
+                delivery_price, 
+                likes_count, 
+                offer_url, 
+                image_url, 
+                creation_date, 
+                end_date, 
+                user_id, 
+                category_id, 
+                status
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ');
+
+        $statement->execute([
+            $post->getTitle(),
+            $post->getDescription(),
+            $post->getNewPrice(),
+            $post->getOldPrice(),
+            $post->getDeliveryPrice(),
+            $post->getLikesCount(),
+            $post->getOfferUrl(),
+            $post->getImageUrl(),
+            $post->getCreationDate()->format('Y-m-d H:i:s'),
+            $post->getEndDate()->format('Y-m-d H:i:s'),
+            $post->getUserId(),
+            $post->getCategoryId(),
+            $post->getStatus()
+        ]);
+    }
+
+
+
     public function getHotPosts(): array {
         $query = '
             SELECT p.*, u.user_name

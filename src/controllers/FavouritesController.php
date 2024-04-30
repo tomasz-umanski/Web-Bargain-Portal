@@ -3,6 +3,19 @@
 require_once 'ContentController.php';
 
 class FavouritesController extends ContentController {
+    private static $instance = null;
+
+    private function __construct() {
+        parent::__construct();
+    }
+
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new FavouritesController();
+        }
+        return self::$instance;
+    }
+
     private const FAVOURITE_CATEGORIES = "Favourite categories";
     private const FAVOURITE_SEARCHES = "Favourite searches";
     private const FAVOURITE_DEALS = "Favourite deals";

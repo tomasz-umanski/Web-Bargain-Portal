@@ -52,13 +52,14 @@ input, label {
 .label-name{
     font-weight: 500;
 }
-input, textarea{
+input, textarea, select{
     width: 100%;
     border-radius: 15px;
     height: 40px;
     padding: 0 10px;
     border: 1px #ADADAD solid;
     background: white;
+    appearance: none;
 }
 textarea{
     padding: 10px 10px;
@@ -103,6 +104,9 @@ input[type="date"] {
     width: 100%;
     background: transparent;
 }
+input[type="datetime-local"] { 
+    display: flex;
+}
 @media (max-width: 850px) {
     .form-box{
         min-width: 0 !important;
@@ -114,6 +118,10 @@ input[type="date"] {
         flex-direction: column;
     }
     input[type="datetime-local"] { 
+        display: flex;
+        width: calc(96vw - 60px);
+    }
+    select { 
         display: flex;
         width: calc(96vw - 60px);
     }

@@ -5,6 +5,19 @@ require_once __DIR__ . '/../models/Post.php';
 require_once __DIR__ . '/../repository/PostRepository.php';
 
 class HomeController extends ContentController {
+    private static $instance = null;
+
+    private function __construct() {
+        parent::__construct();
+    }
+
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new HomeController();
+        }
+        return self::$instance;
+    }
+
     private const HOT = "Hot";
     private const NEW = "New";
     private const LAST_CALL = "Last Call";
@@ -22,7 +35,7 @@ class HomeController extends ContentController {
     }
 
     public function index() {
-        $posts = $this->postRepository->getHotPosts();
+        // $posts = $this->postRepository->getHotPosts();
         $options = [
             ["url" => self::URL_NEW, "name" => self::NEW],
             ["url" => self::URL_LAST_CALL, "name" => self::LAST_CALL]
@@ -31,7 +44,7 @@ class HomeController extends ContentController {
     }
 
     public function new() {
-        $posts = $this->postRepository->getNewPosts();
+        // $posts = $this->postRepository->getNewPosts();
         $options = [
             ["url" => self::URL_HOT, "name" => self::HOT],
             ["url" => self::URL_LAST_CALL, "name" => self::LAST_CALL]
@@ -40,7 +53,7 @@ class HomeController extends ContentController {
     }
 
     public function lastCall() {
-        $posts = $this->postRepository->getLastCallPosts();
+        // $posts = $this->postRepository->getLastCallPosts();
         $options = [
             ["url" => self::URL_HOT, "name" => self::HOT],
             ["url" => self::URL_NEW, "name" => self::NEW]

@@ -7,12 +7,19 @@ require_once __DIR__ . '/../forms/LoginForm.php';
 require_once __DIR__ . '/../forms/RegisterForm.php';
 
 class AuthController extends AppController {
+    private static $instance = null;
     private $authService;
 
-    public function __construct()
-    {
+    private function __construct() {
         parent::__construct();
         $this->authService = new AuthService();
+    }
+
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new AuthController();
+        }
+        return self::$instance;
     }
 
     public function login() {

@@ -32,14 +32,6 @@ class Router {
         return $this->add('DELETE', $uri, $controller, $middleware);
     }
 
-    // public function only($key) {
-    //     $lastRoute = end($this->routes);
-    //     $lastRouteKey = key($this->routes);
-    //     $this->routes[$lastRouteKey][array_key_last($lastRoute)]['middleware'] = $key;
-    //     var_dump($this->routes);
-    //     // die();
-    //     return $this;
-    // }
     public function previousUrl() {
         return $_SERVER['HTTP_REFERER'];
     }
@@ -56,7 +48,7 @@ class Router {
         }
 
         Middleware::resolve($route['middleware']);
-        $controller = new $controllerName();
+        $controller = $controllerName::getInstance();
         $action = $action ?: 'index';
         $id = explode("/", $uri)[1] ?? '';
         $controller->$action($id);

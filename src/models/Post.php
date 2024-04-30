@@ -4,31 +4,48 @@ class Post {
     private $id;
     private $title;
     private $description;
-    private $oldPrice;
     private $newPrice;
+    private $oldPrice;
     private $deliveryPrice;
     private $likesCount;
     private $offerUrl;
     private $imageUrl;
     private $creationDate;
-    private $creationDateDiff;
     private $endDate;
-    private $endDateDiff;
-    private $user;
+    private $userId;
+    private $categoryId;
+    private $status;
 
-    public function __construct($id, $title, $description, $oldPrice, $newPrice, $deliveryPrice, $likesCount, $offerUrl, $imageUrl, $creationDateDiff, $endDateDiff, $user) {
+    public function __construct(
+        $id, 
+        $title, 
+        $description, 
+        $newPrice, 
+        $oldPrice, 
+        $deliveryPrice, 
+        $likesCount, 
+        $offerUrl, 
+        $imageUrl, 
+        $creationDate, 
+        $endDate, 
+        $userId, 
+        $categoryId, 
+        $status
+    ) {
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
-        $this->oldPrice = $oldPrice;
         $this->newPrice = $newPrice;
+        $this->oldPrice = $oldPrice;
         $this->deliveryPrice = $deliveryPrice;
         $this->likesCount = $likesCount;
         $this->offerUrl = $offerUrl;
         $this->imageUrl = $imageUrl;
-        $this->creationDateDiff = $creationDateDiff;
-        $this->endDateDiff = $endDateDiff;
-        $this->user = $user;
+        $this->creationDate = $creationDate;
+        $this->endDate = $endDate;
+        $this->userId = $userId;
+        $this->categoryId = $categoryId;
+        $this->status = $status;
     }
 
     public function getId() {
@@ -38,17 +55,17 @@ class Post {
     public function getTitle() {
         return $this->title;
     }
-    
+
     public function getDescription() {
         return $this->description;
     }
 
-    public function getOldPrice() {
-        return $this->oldPrice;
-    }
-
     public function getNewPrice() {
         return $this->newPrice;
+    }
+
+    public function getOldPrice() {
+        return $this->oldPrice;
     }
 
     public function getDeliveryPrice() {
@@ -71,19 +88,19 @@ class Post {
         return $this->creationDate;
     }
 
-    public function getCreationDateDiff() {
-        return $this->creationDateDiff;
-    }
-
     public function getEndDate() {
         return $this->endDate;
     }
 
-    public function getEndDateDiff() {
-        return $this->endDateDiff;
+    public function getUserId() {
+        return $this->userId;
     }
 
-    public function getUser() {
-        return $this->user;
+    public function getCategoryId() {
+        return $this->categoryId;
+    }
+
+    public function getStatus() {
+        return $this->status;
     }
 }

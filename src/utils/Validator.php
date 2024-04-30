@@ -1,9 +1,7 @@
 <?php
 
 class Validator { 
-
     const MAX_FILE_SIZE = 2 * 1024 * 1024;
-    const UPLOAD_DIRECTORY = '/../public/uploads/';
 
     public static function string($value, $min = 1, $max = INF): bool {
         $value = trim($value);
@@ -48,7 +46,7 @@ class Validator {
     }
     
     public static function file($file): bool {
-        if(!is_uploaded_file($file['tmp_name'])){
+        if(!is_uploaded_file($file['tmp_name'])) {
             return false;
         }
 

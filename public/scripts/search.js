@@ -5,7 +5,15 @@ search.addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
 
-        const searchQuery = search.value.trim();
-        window.location.href = "/search/" + encodeURIComponent(searchQuery);
+        if(!isSearchPage()) {
+            const searchQuery = search.value.trim();
+            window.location.href = "/search/" + encodeURIComponent(searchQuery);
+        } else {
+            //fetch api
+        }
     }
 });
+
+function isSearchPage() {
+    return window.location.pathname.startsWith("/search/");
+}

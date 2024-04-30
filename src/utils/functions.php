@@ -24,3 +24,8 @@ function getUri($path) {
     $uri = trim($path, '/');
     return parse_url($uri, PHP_URL_PATH);
 }
+
+function alert($alertMessage) {
+    $code = "<script>alert('$alertMessage');</script>";
+    echo $code;
+} 
