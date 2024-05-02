@@ -79,6 +79,27 @@ class PostRepository extends Repository {
         return $this->fetchPostsByQuery($query);
     }
 
+    public function getPostsByCategory($categoryId): ?array {
+        $query = $this->database->connect()->prepare("
+            SELECT p.*, u.user_name, c.name AS category_name
+            FROM post p
+            JOIN users u ON p.user_id = u.id
+            JOIN category c ON p.category_id = c.id
+            WHERE p.end_date > NOW() AND p.status = 'active' AND (c.id = :category_id)
+            ORDER BY p.end_date ASC;
+        ");
+        $query->bindParam(':category_id', $categoryId, PDO::PARAM_STR);
+        $query->execute();
+
+        $posts = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($posts as $post) {
+            $result[] = $this->createPostFromData($post);
+        }
+
+        return $result;
+    }
+
     private function fetchPostsByQuery(string $query): array {
         $result = [];
         $statement = $this->database->connect()->prepare($query);
@@ -111,7 +132,6 @@ class PostRepository extends Repository {
         );
     }
 
-
     public function getPostByQueryString(string $searchString): array {
         $result = [];
         $searchString = '%' . strtolower($searchString) . '%';
@@ -133,32 +153,4 @@ class PostRepository extends Repository {
 
         return $result;
     }
-
-    public function getPostsByCategory($categoryId): array {
-        $result = [];
-        $query = $this->database->connect()->prepare('
-            SELECT p.*, u.user_name
-            FROM post p
-            JOIN users u ON p.user_id = u.id
-            WHERE p.end_date > NOW() AND (p.category_id = :category_id)
-            ORDER BY p.end_date ASC;
-        ');
-        $query->bindParam(':category_id', $categoryId, PDO::PARAM_STR);
-        $query->execute();
-
-        $posts = $query->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach ($posts as $post) {
-            $result[] = $this->createPostFromData($post);
-        }
-
-        return $result;
-    }
-
-
-
-
-
-
-
 }

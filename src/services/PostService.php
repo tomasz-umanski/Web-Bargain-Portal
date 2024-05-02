@@ -23,6 +23,10 @@ class PostService {
         return $this->postRepository->getLastCallPosts();
     }
 
+    public function getPostsByCategory($categoryId) :?array {
+        return $this->postRepository->getPostsByCategory($categoryId);
+    }
+
     public function createPostAttempt($offerUrl, $title, $categoryId, $newPrice, $oldPrice, $deliveryPrice, $endDate, $description, $imageUrl) : void {
         $user = Session::get('user');
         $status = 'pending';

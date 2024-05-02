@@ -2,23 +2,21 @@
 
 require_once 'AppController.php';
 
-require_once __DIR__ . '/../models/Category.php';
-require_once __DIR__ . '/../repository/CategoryRepository.php';
 require_once __DIR__ . '/../services/PostService.php';
+require_once __DIR__ . '/../services/CategoryService.php';
 
 class ContentController extends AppController {
-    protected $categoryRepository;
+    protected $categoryService;
     protected $postService;
 
     public function __construct() {
         parent::__construct();
-        $this->categoryRepository = new CategoryRepository();
+        $this->categoryService = new CategoryService();
         $this->postService = new PostService();
     }
 
     protected function render(string $template = null, array $variables = []) {
-        $categories = $this->categoryRepository->getCategories();
-        $variables['categories'] = $categories;
+        $variables['categories'] = $this->categoryService->getCategories();
         parent::render($template, $variables);
     }
 }

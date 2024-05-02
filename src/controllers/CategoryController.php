@@ -11,15 +11,15 @@ class CategoryController extends ContentController {
 
     public static function getInstance() {
         if (!self::$instance) {
-            self::$instance = new HomeController();
+            self::$instance = new CategoryController();
         }
         return self::$instance;
     }
 
     public function category($url) {
-        $selectedCategory = $this->categoryRepository->getCategoryByUrl($url);
+        $selectedCategory = $this->categoryService->getCategoryByUrl($url);
         if ($selectedCategory != null) {
-            $posts = $this->postRepository->getPostsByCategory($selectedCategory->getId());
+            $posts = $this->postService->getPostsByCategory($selectedCategory->getId());
             $this->render("category", ['selectedCategory' => $selectedCategory, 'posts' => $posts]);
         } else {
             $this->render('not-found');

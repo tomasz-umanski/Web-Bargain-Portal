@@ -16,7 +16,6 @@
                 Favourites
             </span>
         </div>
-        <?php require('partials/subnav.php') ?>
         <div class="content">
             <?php require('partials/content-items.php') ?>
         </div>
