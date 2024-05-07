@@ -55,4 +55,76 @@ class PostService {
             Session::flash('postCreationMessage', 'Failed to create post! Please try again later or contact support for assistance.');
         }
     }
+
+    public function togglePostLike(int $postId): void {
+        $userId = Session::get('user')['id'];
+        
+        try {
+            $action = $this->postRepository->togglePostLike($postId, $userId);
+            $response = ['action' => $action];
+            $statusCode = 200;
+        } catch (Exception $e) {
+            $response = ['error' => 'Internal Server Error'];
+            $statusCode = 500;
+        }
+        
+        http_response_code($statusCode);
+        echo json_encode($response);
+    }
+    
+    public function getPostLikeStatus(int $postId): void {
+        $userId = Session::get('user')['id'];
+        $isLiked = false;
+    
+        if ($userId !== null) {
+            try {
+                $isLiked = $this->postRepository->getPostLikeStatus($postId, $userId);
+            } catch (Exception $e) {
+                $response = ['error' => 'Internal Server Error'];
+                $statusCode = 500;
+            }
+        }
+    
+        $response = ['isLiked' => $isLiked ?? false];
+        $statusCode = 200;
+    
+        http_response_code($statusCode);
+        echo json_encode($response);
+    }
+
+    public function togglePostFavourite(int $postId): void {
+        $userId = Session::get('user')['id'];
+        
+        try {
+            $action = $this->postRepository->togglePostFavourite($postId, $userId);
+            $response = ['action' => $action];
+            $statusCode = 200;
+        } catch (Exception $e) {
+            $response = ['error' => 'Internal Server Error'];
+            $statusCode = 500;
+        }
+        
+        http_response_code($statusCode);
+        echo json_encode($response);
+    }
+    
+    public function getPostFavouriteStatus(int $postId): void {
+        $userId = Session::get('user')['id'];
+        $isFavourite = false;
+    
+        if ($userId !== null) {
+            try {
+                $isFavourite = $this->postRepository->getPostFavouriteStatus($postId, $userId);
+            } catch (Exception $e) {
+                $response = ['error' => 'Internal Server Error'];
+                $statusCode = 500;
+            }
+        }
+    
+        $response = ['isFavourite' => $isFavourite ?? false];
+        $statusCode = 200;
+    
+        http_response_code($statusCode);
+        echo json_encode($response);
+    }
 }

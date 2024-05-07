@@ -100,6 +100,65 @@ class PostRepository extends Repository {
         return $result;
     }
 
+    public function togglePostLike(int $postId, string $userId): string {
+        $pdo = $this->database->connect();
+    
+        $toggleStmt = $pdo->prepare("CALL toggle_post_like(:user_id, :post_id)");
+        $toggleStmt->bindParam(':user_id', $userId, PDO::PARAM_STR);
+        $toggleStmt->bindParam(':post_id', $postId, PDO::PARAM_INT);
+        $toggleStmt->execute();
+    
+        return $this->getPostLikeStatus($postId, $userId) ? "liked" : "disliked";
+    }
+    
+    public function getPostLikeStatus(int $postId, string $userId): bool {
+        $pdo = $this->database->connect();
+    
+        $checkStmt = $pdo->prepare("
+            SELECT EXISTS (
+                SELECT 1
+                FROM user_post 
+                WHERE user_id = :user_id AND post_id = :post_id AND action_type = 'like'
+            ) as liked
+        ");
+        $checkStmt->bindParam(':user_id', $userId, PDO::PARAM_STR);
+        $checkStmt->bindParam(':post_id', $postId, PDO::PARAM_INT);
+        $checkStmt->execute();
+        $row = $checkStmt->fetch(PDO::FETCH_ASSOC);
+    
+        return $row['liked'];
+    }
+
+    public function togglePostFavourite(int $postId, string $userId): string {
+        $pdo = $this->database->connect();
+    
+        $toggleStmt = $pdo->prepare("CALL toggle_post_favourite(:user_id, :post_id)");
+        $toggleStmt->bindParam(':user_id', $userId, PDO::PARAM_STR);
+        $toggleStmt->bindParam(':post_id', $postId, PDO::PARAM_INT);
+        $toggleStmt->execute();
+    
+        return $this->getPostFavouriteStatus($postId, $userId) ? "favourited" : "unfavourited";
+    }
+    
+    public function getPostFavouriteStatus(int $postId, string $userId): bool {
+        $pdo = $this->database->connect();
+    
+        $checkStmt = $pdo->prepare("
+            SELECT EXISTS (
+                SELECT 1
+                FROM user_post 
+                WHERE user_id = :user_id AND post_id = :post_id AND action_type = 'favourite'
+            ) as favourited
+        ");
+        $checkStmt->bindParam(':user_id', $userId, PDO::PARAM_STR);
+        $checkStmt->bindParam(':post_id', $postId, PDO::PARAM_INT);
+        $checkStmt->execute();
+        $row = $checkStmt->fetch(PDO::FETCH_ASSOC);
+    
+        return $row['favourited'];
+    }
+    
+
     private function fetchPostsByQuery(string $query): array {
         $result = [];
         $statement = $this->database->connect()->prepare($query);

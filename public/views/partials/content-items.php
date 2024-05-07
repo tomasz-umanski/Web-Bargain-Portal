@@ -5,7 +5,7 @@
 <?php else : ?>
     <div class="content-items">
         <?php foreach ($posts as $post) : ?>
-            <div class="content-item">
+            <div class="content-item" id="<?= $post->getId(); ?>">
                 <div class="content-item-grid">
                     <div class="content-image">
                         <div class="crop">
@@ -45,7 +45,7 @@
                             <span><i class="bi bi-heart"></i></span>
                             <p> <?= $post->getLikesCount(); ?> </p>
                         </button>
-                        <button class="content-button content-favourites">
+                        <button class="content-button content-favourite">
                             <span><i class="bi bi-star"></i></span>
                         </button>
                         <a class="content-button content-catchdeal" target="_blank" href="<?= $post->getOfferUrl(); ?>">
@@ -97,7 +97,7 @@
                     <span><i class="bi bi-heart"></i></span>
                     <p> 125 </p>
                 </button>
-                <button class="content-button content-favourites">
+                <button class="content-button content-favourite">
                     <span><i class="bi bi-star"></i></span>
                 </button>
                 <a class="content-button content-catchdeal" href="#">
@@ -108,3 +108,5 @@
         </div>
     </div>                          
 </template>
+
+<script type="text/javascript" src="/public/scripts/statistics.js" defer></script>

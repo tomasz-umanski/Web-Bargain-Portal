@@ -395,6 +395,14 @@ body{
 .content-button:active{
     opacity: 0.5;
 }
+.liked {
+    color: var(--liked);
+    border-color: var(--liked);
+}
+.favourited {
+    background-color: var(--favourite);
+    border-color: black;
+}
 .content-catchdeal{
     background-color: var(--primary);
     border: none;

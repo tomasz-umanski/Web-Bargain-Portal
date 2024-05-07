@@ -26,6 +26,11 @@ $router->get('signUp', 'AuthController', 'guest');
 $router->post('register', 'AuthController', 'guest');
 $router->delete('logout', 'AuthController', 'auth');
 
+$router->post('togglePostLike', 'ContentController', 'auth');
+$router->get('getPostLikeStatus', 'ContentController');
+$router->post('togglePostFavourite', 'ContentController', 'auth');
+$router->get('getPostFavouriteStatus', 'ContentController');
+
 // $router->get('favourites', 'FavouritesController','auth')->only('auth');
 // $router->get('favouriteSearches', 'FavouritesController')->only('auth');
 // $router->get('favouriteDeals', 'FavouritesController')->only('auth');

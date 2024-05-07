@@ -7,6 +7,7 @@ require_once 'src/controllers/NewPostController.php';
 require_once 'src/controllers/CategoryController.php';
 require_once 'src/controllers/SearchController.php';
 require_once 'src/controllers/AuthController.php';
+require_once 'src/controllers/ContentController.php';
 require_once 'middleware/Middleware.php';
 
 class Router {
