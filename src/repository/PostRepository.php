@@ -157,7 +157,29 @@ class PostRepository extends Repository {
     
         return $row['favourited'];
     }
-    
+
+    public function getFavouritePosts($userId): array {
+        $result = [];
+        $query = $this->database->connect()->prepare("
+            SELECT p.*, u.user_name, c.name AS category_name
+            FROM post p
+            JOIN users u ON p.user_id = u.id
+            JOIN category c ON p.category_id = c.id
+            INNER JOIN user_post up ON p.id = up.post_id
+            WHERE p.end_date > NOW() AND p.status = 'active' AND up.user_id = :user_id AND up.action_type = 'favourite'
+            ORDER BY p.end_date ASC;
+        ");
+        $query->bindParam(':user_id', $userId, PDO::PARAM_STR);
+        $query->execute();
+
+        $posts = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($posts as $post) {
+            $result[] = $this->createPostFromData($post);
+        }
+
+        return $result;
+    }
 
     private function fetchPostsByQuery(string $query): array {
         $result = [];

@@ -127,4 +127,9 @@ class PostService {
         http_response_code($statusCode);
         echo json_encode($response);
     }
+
+    public function getFavouritePosts() :?array {
+        $userId = Session::get('user')['id'];
+        return $this->postRepository->getFavouritePosts($userId);
+    }
 }

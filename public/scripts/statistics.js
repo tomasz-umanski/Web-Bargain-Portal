@@ -59,7 +59,6 @@ async function togglePostfavourite(event) {
 
         const data = await response.json();
         if (data) {
-            console.log(data);
             if (data.action === 'favourited') {
                 button.classList.add('favourited');
             } else if (data.action === 'unfavourited') {

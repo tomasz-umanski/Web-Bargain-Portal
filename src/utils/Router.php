@@ -42,7 +42,7 @@ class Router {
         $route = $this->routes[$method][$action];
         $controllerName = $route['controller'];
         if (!class_exists($controllerName)) {
-            $controller = new NotFoundController();
+            $controller = NotFoundController::getInstance();
             http_response_code(404);
             $controller->renderNotFoundPage();
             die();

@@ -32,7 +32,7 @@ class AuthService {
         }
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $user = new User(0, $username, $email, $hashedPassword);
-        $this->userRepository->createUser($user);
+        $createdUserId = $this->userRepository->createUser($user);
         $user->setId($createdUserId);
         Session::startUserSession($user);
         return true;

@@ -17,6 +17,7 @@ class FavouritesController extends ContentController {
     }
     
     public function favourites() {
-        $this->render('favourites');
+        $posts = $this->postService->getFavouritePosts();
+        $this->render('favourites', ['subnavContent' => $subnavContent, 'posts' => $posts]);
     }
 }
