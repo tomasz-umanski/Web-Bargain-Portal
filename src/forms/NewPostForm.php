@@ -21,8 +21,8 @@ class NewPostForm extends Form {
     private function validateUrl($url) {
         if (!Validator::string($url)) {
             $this->errors['url'] = 'Url is required.';
-        } else if (!Validator::string($url, 1, 50)) {
-            $this->errors['url'] = 'Url should not exceed 50 characters.';
+        } else if (!Validator::string($url, 1, 200)) {
+            $this->errors['url'] = 'Url should not exceed 200 characters.';
         } else if (!Validator::url($url)) {
             $this->errors['url'] = 'Provide a valid url.';
         }
@@ -31,8 +31,8 @@ class NewPostForm extends Form {
     private function validateTitle($title) {
         if (!Validator::string($title)) {
             $this->errors['title'] = 'Title is required.';
-        } else if (!Validator::string($title, 1, 50)) {
-            $this->errors['title'] = 'Title should not exceed 50 characters.';
+        } else if (!Validator::string($title, 1, 100)) {
+            $this->errors['title'] = 'Title should not exceed 100 characters.';
         }
     }
 
@@ -57,8 +57,8 @@ class NewPostForm extends Form {
     private function validateDescription($description) {
         if (!Validator::string($description)) {
             $this->errors['description'] = 'Description is required.';
-        } else if (!Validator::string($description, 1, 200)) {
-            $this->errors['description'] = 'Description should not exceed 200 characters.';
+        } else if (!Validator::string($description, 1, 500)) {
+            $this->errors['description'] = 'Description should not exceed 500 characters.';
         }
     }
 

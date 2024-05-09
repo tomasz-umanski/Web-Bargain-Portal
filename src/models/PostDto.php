@@ -1,6 +1,6 @@
 <?php
 
-class PostDto {
+class PostDto implements \JsonSerializable {
     private $id;
     private $title;
     private $description;
@@ -122,5 +122,11 @@ class PostDto {
 
     private function determineDeliveryPriceString($deliveryPrice): string {
         return ($deliveryPrice == 0) ? 'Free delivery' : $deliveryPrice . ' zł';
+    }
+
+    public function jsonSerialize() {
+        $vars = get_object_vars($this);
+
+        return $vars;
     }
 }

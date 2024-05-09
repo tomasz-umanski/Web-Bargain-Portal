@@ -16,8 +16,15 @@ class SearchController extends ContentController {
         return self::$instance;
     }
 
-    public function search($searchString) {
-        $posts = $this->postRepository->getPostByQueryString($searchString);
-        $this->render("search", ['searchInput' => $searchString, 'posts' => $posts]);
+    public function search() {
+        $posts = $this->postService->getPostByQueryString();
+    
+        $serializedPosts = array();
+        foreach ($posts as $post) {
+            $serializedPosts[] = $post->jsonSerialize();
+        }
+    
+        http_response_code(200);
+        echo json_encode($serializedPosts);
     }
 }

@@ -491,6 +491,9 @@ footer {
 .hidden {
     display: none;
 }
+.navbar-margin{
+    margin-top: var(--navbar-height);
+}
 /* ================= MOBILE STYLING ================= */
 @media (max-width: 850px) {
     .navbar{

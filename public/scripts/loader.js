@@ -1,4 +1,4 @@
 window.addEventListener("load", function() {
-    var loader = document.getElementById("loader");
+    let loader = document.getElementById("loader");
     loader.classList.add("hidden");
 });

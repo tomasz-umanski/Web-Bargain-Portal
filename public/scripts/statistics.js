@@ -1,6 +1,3 @@
-const likeButtons = document.querySelectorAll(".content-like");
-const favouriteButtons = document.querySelectorAll(".content-favourite");
-
 async function togglePostLike(event) {
     const button = this;
     const container = button.parentElement.parentElement.parentElement;
@@ -70,7 +67,8 @@ async function togglePostfavourite(event) {
     }
 }
 
-async function initializeLikeButtons(buttons) {
+async function initializeLikeButtons() {
+    const buttons = document.querySelectorAll(".content-like");
     try {
         for (const button of buttons) {
             const container = button.parentElement.parentElement.parentElement;
@@ -87,7 +85,8 @@ async function initializeLikeButtons(buttons) {
     }
 }
 
-async function initializeFavouriteButtons(buttons) {
+async function initializeFavouriteButtons() {
+    const buttons = document.querySelectorAll(".content-favourite");
     try {
         for (const button of buttons) {
             const container = button.parentElement.parentElement.parentElement;
@@ -104,5 +103,5 @@ async function initializeFavouriteButtons(buttons) {
     }
 }
 
-initializeLikeButtons(likeButtons);
-initializeFavouriteButtons(favouriteButtons);
+initializeLikeButtons();
+initializeFavouriteButtons();

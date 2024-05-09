@@ -132,4 +132,15 @@ class PostService {
         $userId = Session::get('user')['id'];
         return $this->postRepository->getFavouritePosts($userId);
     }
+
+    public function getPostByQueryString() {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $content = trim(file_get_contents("php://input"));
+            $decoded = json_decode($content, true);
+            
+            return $this->postRepository->getPostByQueryString($decoded['search']);
+        }
+    }
 }

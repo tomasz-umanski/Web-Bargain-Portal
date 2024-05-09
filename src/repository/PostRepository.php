@@ -181,6 +181,29 @@ class PostRepository extends Repository {
         return $result;
     }
 
+    public function getPostByQueryString(string $searchString): array {
+        $result = [];
+        $searchString = '%' . strtolower($searchString) . '%';
+        $query = $this->database->connect()->prepare("
+            SELECT p.*, u.user_name, c.name AS category_name
+            FROM post p
+            JOIN users u ON p.user_id = u.id
+            JOIN category c ON p.category_id = c.id
+            WHERE p.end_date > NOW() AND p.status = 'active' AND (LOWER(p.title) LIKE :search OR LOWER(p.description) LIKE :search)
+            ORDER BY p.likes_count DESC;
+        ");
+        $query->bindParam(':search', $searchString, PDO::PARAM_STR);
+        $query->execute();
+
+        $posts = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($posts as $post) {
+            $result[] = $this->createPostFromData($post);
+        }
+
+        return $result;
+    }
+
     private function fetchPostsByQuery(string $query): array {
         $result = [];
         $statement = $this->database->connect()->prepare($query);
@@ -211,27 +234,5 @@ class PostRepository extends Repository {
             $post['category_name'],
             $post['status']
         );
-    }
-
-    public function getPostByQueryString(string $searchString): array {
-        $result = [];
-        $searchString = '%' . strtolower($searchString) . '%';
-        $query = $this->database->connect()->prepare('
-            SELECT p.*, u.user_name
-            FROM post p
-            JOIN users u ON p.user_id = u.id
-            WHERE p.end_date > NOW() AND (LOWER(p.title) LIKE :search OR LOWER(p.description) LIKE :search)
-            ORDER BY p.end_date ASC;
-        ');
-        $query->bindParam(':search', $searchString, PDO::PARAM_STR);
-        $query->execute();
-
-        $posts = $query->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach ($posts as $post) {
-            $result[] = $this->createPostFromData($post);
-        }
-
-        return $result;
     }
 }

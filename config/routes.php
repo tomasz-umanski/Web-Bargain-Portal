@@ -10,7 +10,7 @@ $router->get('lastCall', 'HomeController');
 
 $router->get('category', 'CategoryController');
 
-$router->get('search', 'SearchController');
+$router->post('search', 'SearchController');
 
 $router->get('favourites', 'FavouritesController','auth');
 $router->get('favouriteSearches', 'FavouritesController', 'auth');
