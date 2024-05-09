@@ -34,7 +34,7 @@ class NewPostController extends ContentController {
 
         $fileName = FileService::moveUploadedFile($attributes['file']);
 
-        if (!$fileDestination) {
+        if (!$fileName) {
             $form->error(
                 'file', "Can't move uploaded file."
             )->throw();

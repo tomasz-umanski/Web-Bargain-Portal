@@ -41,12 +41,19 @@ CREATE TABLE IF NOT EXISTS public.category
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.user_post
+CREATE TABLE IF NOT EXISTS public.likes
 (
     id serial NOT NULL,
     user_id uuid NOT NULL,
     post_id integer NOT NULL,
-    action_type text NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.favourites
+(
+    id serial NOT NULL,
+    user_id uuid NOT NULL,
+    post_id integer NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -66,7 +73,7 @@ ALTER TABLE IF EXISTS public.post
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public.user_post
+ALTER TABLE IF EXISTS public.likes
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id) MATCH SIMPLE
     ON UPDATE NO ACTION
@@ -74,7 +81,23 @@ ALTER TABLE IF EXISTS public.user_post
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public.user_post
+ALTER TABLE IF EXISTS public.likes
+    ADD FOREIGN KEY (post_id)
+    REFERENCES public.post (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public.favourites
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public.favourites
     ADD FOREIGN KEY (post_id)
     REFERENCES public.post (id) MATCH SIMPLE
     ON UPDATE NO ACTION

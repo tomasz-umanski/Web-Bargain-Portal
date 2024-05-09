@@ -371,6 +371,7 @@ body{
     grid-column: span 3;
     font-size: 16px;
     text-align: justify;
+    margin-top: 10px;
 }
 .content-item-actions {
     grid-area: 4 / 2 / 5 / 5;
@@ -583,8 +584,8 @@ footer {
         grid-column: span 4;
         font-size: 12px;
         display: flex;
-        /* align-items: center; */
         padding: 15px 0 !important;
+        margin-top: 0;
     }
     .content-item-actions{
         grid-area: 4 / 1 / 5 / 5;

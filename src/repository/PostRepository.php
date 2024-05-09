@@ -117,8 +117,8 @@ class PostRepository extends Repository {
         $checkStmt = $pdo->prepare("
             SELECT EXISTS (
                 SELECT 1
-                FROM user_post 
-                WHERE user_id = :user_id AND post_id = :post_id AND action_type = 'like'
+                FROM likes 
+                WHERE user_id = :user_id AND post_id = :post_id
             ) as liked
         ");
         $checkStmt->bindParam(':user_id', $userId, PDO::PARAM_STR);
@@ -146,8 +146,8 @@ class PostRepository extends Repository {
         $checkStmt = $pdo->prepare("
             SELECT EXISTS (
                 SELECT 1
-                FROM user_post 
-                WHERE user_id = :user_id AND post_id = :post_id AND action_type = 'favourite'
+                FROM favourites 
+                WHERE user_id = :user_id AND post_id = :post_id
             ) as favourited
         ");
         $checkStmt->bindParam(':user_id', $userId, PDO::PARAM_STR);
@@ -165,8 +165,8 @@ class PostRepository extends Repository {
             FROM post p
             JOIN users u ON p.user_id = u.id
             JOIN category c ON p.category_id = c.id
-            INNER JOIN user_post up ON p.id = up.post_id
-            WHERE p.end_date > NOW() AND p.status = 'active' AND up.user_id = :user_id AND up.action_type = 'favourite'
+            INNER JOIN favourites f ON p.id = f.post_id
+            WHERE p.end_date > NOW() AND p.status = 'active' AND f.user_id = :user_id
             ORDER BY p.end_date ASC;
         ");
         $query->bindParam(':user_id', $userId, PDO::PARAM_STR);
