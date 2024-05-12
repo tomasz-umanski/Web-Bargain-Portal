@@ -9,6 +9,7 @@ async function handlePostAction(event, action) {
             lastUpdated: lastUpdated
         };
 
+        console.log(requestData);
         const response = await fetch(`/${action}Post`, {
             method: 'POST',
             headers: {

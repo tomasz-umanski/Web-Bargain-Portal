@@ -6,57 +6,73 @@ require_once __DIR__ . '/../models/PostDto.php';
 
 class PostRepository extends Repository {
 
-    public function getPostsToApprove() {
-        $query = "
-            SELECT p.*, u.user_name, c.name AS category_name
-            FROM post p
-            JOIN users u ON p.user_id = u.id
-            JOIN category c ON p.category_id = c.id
-            WHERE p.end_date > NOW() AND p.status = 'pending'
-            ORDER BY p.likes_count DESC;
-        ";
-        return $this->fetchPostsByQuery($query);
-    }
-
     public function createPost(Post $post) : void {
-        $statement = $this->database->connect()->prepare('
-            INSERT INTO public.post (
-                title, 
-                description, 
-                new_price, 
-                old_price, 
-                delivery_price, 
-                likes_count, 
-                offer_url, 
-                image_url, 
-                end_date, 
-                user_id, 
-                category_id, 
-                status
-            )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ');
+        $conn = $this->database->connect();
+        $conn->beginTransaction();
+        try {
+            $statement = $conn->prepare('
+                WITH inserted_post AS (
+                    INSERT INTO public.post (
+                        user_id, 
+                        category_id, 
+                        status, 
+                        likes_count, 
+                        end_date
+                    )
+                    VALUES (?, ?, ?, ?, ?)
+                    RETURNING id
+                )
+                INSERT INTO public.post_details (
+                    post_id, 
+                    title, 
+                    description, 
+                    new_price, 
+                    old_price, 
+                    delivery_price, 
+                    offer_url, 
+                    image_url
+                )
+                SELECT 
+                    inserted_post.id, 
+                    ?, 
+                    ?, 
+                    ?, 
+                    ?, 
+                    ?, 
+                    ?, 
+                    ?
+                FROM inserted_post
+            ');
 
-        $statement->execute([
-            $post->getTitle(),
-            $post->getDescription(),
-            $post->getNewPrice(),
-            $post->getOldPrice(),
-            $post->getDeliveryPrice(),
-            $post->getLikesCount(),
-            $post->getOfferUrl(),
-            $post->getImageUrl(),
-            $post->getEndDate()->format('Y-m-d H:i:s'),
-            $post->getUserId(),
-            $post->getCategoryId(),
-            $post->getStatus()
-        ]);
+            $statement->execute([
+                $post->getUserId(),
+                $post->getCategoryId(),
+                $post->getStatus(),
+                $post->getLikesCount(),
+                $post->getEndDate()->format('Y-m-d H:i:s'),
+                $post->getTitle(),
+                $post->getDescription(),
+                $post->getNewPrice(),
+                $post->getOldPrice(),
+                $post->getDeliveryPrice(),
+                $post->getOfferUrl(),
+                $post->getImageUrl()
+            ]);
+
+            $conn->commit();
+        } catch (Exception $e) {
+            var_dump($e);
+            die();
+            $conn->rollBack();
+            throw new Exception("Error creating post: " . $e->getMessage());
+        }
     }
 
     public function getHotPosts(): array {
         $query = "
-            SELECT p.*, u.user_name, c.name AS category_name
+            SELECT p.*, pd.title, pd.description, pd.new_price, pd.old_price, pd.delivery_price, pd.offer_url, pd.image_url, u.user_name, c.name AS category_name
             FROM post p
+            JOIN post_details pd ON p.id = pd.post_id
             JOIN users u ON p.user_id = u.id
             JOIN category c ON p.category_id = c.id
             WHERE p.end_date > NOW() AND p.status = 'active'
@@ -67,8 +83,9 @@ class PostRepository extends Repository {
 
     public function getNewPosts(): array {
         $query = "
-            SELECT p.*, u.user_name, c.name AS category_name
+            SELECT p.*, pd.title, pd.description, pd.new_price, pd.old_price, pd.delivery_price, pd.offer_url, pd.image_url, u.user_name, c.name AS category_name
             FROM post p
+            JOIN post_details pd ON p.id = pd.post_id
             JOIN users u ON p.user_id = u.id
             JOIN category c ON p.category_id = c.id
             WHERE p.end_date > NOW() AND p.status = 'active'
@@ -79,8 +96,9 @@ class PostRepository extends Repository {
 
     public function getLastCallPosts(): array {
         $query = "
-            SELECT p.*, u.user_name, c.name AS category_name
+            SELECT p.*, pd.title, pd.description, pd.new_price, pd.old_price, pd.delivery_price, pd.offer_url, pd.image_url, u.user_name, c.name AS category_name
             FROM post p
+            JOIN post_details pd ON p.id = pd.post_id
             JOIN users u ON p.user_id = u.id
             JOIN category c ON p.category_id = c.id
             WHERE p.end_date > NOW() AND p.status = 'active'
@@ -91,8 +109,9 @@ class PostRepository extends Repository {
 
     public function getPostsByCategory($categoryId): ?array {
         $query = $this->database->connect()->prepare("
-            SELECT p.*, u.user_name, c.name AS category_name
+            SELECT p.*, pd.title, pd.description, pd.new_price, pd.old_price, pd.delivery_price, pd.offer_url, pd.image_url, u.user_name, c.name AS category_name
             FROM post p
+            JOIN post_details pd ON p.id = pd.post_id
             JOIN users u ON p.user_id = u.id
             JOIN category c ON p.category_id = c.id
             WHERE p.end_date > NOW() AND p.status = 'active' AND (c.id = :category_id)
@@ -152,7 +171,7 @@ class PostRepository extends Repository {
 
     public function changePostStatus(int $postId, string $lastUpdated, string $status): bool {
         $pdo = $this->database->connect();
-        
+
         $stmt = $pdo->prepare("
             SELECT update_post_status(:post_id, :last_updated, :status) AS result
         ");
@@ -160,7 +179,6 @@ class PostRepository extends Repository {
         $stmt->bindParam(':last_updated', $lastUpdated, PDO::PARAM_STR);
         $stmt->bindParam(':status', $status, PDO::PARAM_STR);
         $stmt->execute();
-        
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         
         return (bool)$result['result'];
@@ -188,8 +206,9 @@ class PostRepository extends Repository {
     public function getFavouritePosts($userId): array {
         $result = [];
         $query = $this->database->connect()->prepare("
-            SELECT p.*, u.user_name, c.name AS category_name
+            SELECT p.*, pd.title, pd.description, pd.new_price, pd.old_price, pd.delivery_price, pd.offer_url, pd.image_url, u.user_name, c.name AS category_name
             FROM post p
+            JOIN post_details pd ON p.id = pd.post_id
             JOIN users u ON p.user_id = u.id
             JOIN category c ON p.category_id = c.id
             INNER JOIN favourites f ON p.id = f.post_id
@@ -212,11 +231,12 @@ class PostRepository extends Repository {
         $result = [];
         $searchString = '%' . strtolower($searchString) . '%';
         $query = $this->database->connect()->prepare("
-            SELECT p.*, u.user_name, c.name AS category_name
+            SELECT p.*, pd.title, pd.description, pd.new_price, pd.old_price, pd.delivery_price, pd.offer_url, pd.image_url, u.user_name, c.name AS category_name
             FROM post p
+            JOIN post_details pd ON p.id = pd.post_id
             JOIN users u ON p.user_id = u.id
             JOIN category c ON p.category_id = c.id
-            WHERE p.end_date > NOW() AND p.status = 'active' AND (LOWER(p.title) LIKE :search OR LOWER(p.description) LIKE :search)
+            WHERE p.end_date > NOW() AND p.status = 'active' AND (LOWER(pd.title) LIKE :search OR LOWER(pd.description) LIKE :search)
             ORDER BY p.likes_count DESC;
         ");
         $query->bindParam(':search', $searchString, PDO::PARAM_STR);
@@ -229,6 +249,19 @@ class PostRepository extends Repository {
         }
 
         return $result;
+    }
+
+    public function getPostsToApprove() {
+        $query = "
+            SELECT p.*, pd.title, pd.description, pd.new_price, pd.old_price, pd.delivery_price, pd.offer_url, pd.image_url, u.user_name, c.name AS category_name
+            FROM post p
+            JOIN post_details pd ON p.id = pd.post_id
+            JOIN users u ON p.user_id = u.id
+            JOIN category c ON p.category_id = c.id
+            WHERE p.end_date > NOW() AND p.status = 'pending'
+            ORDER BY p.likes_count DESC;
+        ";
+        return $this->fetchPostsByQuery($query);
     }
 
     private function fetchPostsByQuery(string $query): array {
