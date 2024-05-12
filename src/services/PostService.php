@@ -11,6 +11,10 @@ class PostService {
         $this->postRepository = new PostRepository();
     }
 
+    public function getPostsToApprove() {
+        return $this->postRepository->getPostsToApprove();
+    }
+
     public function getHotPosts() {
         return $this->postRepository->getHotPosts();
     }
@@ -29,7 +33,6 @@ class PostService {
 
     public function createPostAttempt($offerUrl, $title, $categoryId, $newPrice, $oldPrice, $deliveryPrice, $endDate, $description, $imageUrl) : void {
         $user = Session::get('user');
-        $status = 'pending';
 
         $post = $post = new Post(
             null, 
@@ -41,11 +44,10 @@ class PostService {
             0, 
             $offerUrl, 
             $imageUrl, 
-            new DateTime(), 
             new DateTime($endDate), 
             $user['id'], 
             $categoryId, 
-            $status
+            null
         );
 
         try {
@@ -71,7 +73,22 @@ class PostService {
         http_response_code($statusCode);
         echo json_encode($response);
     }
-    
+
+    public function processPostAttempt(int $postId, string $lastUpdated, string $action): void {
+        $status = ($action === 'approve') ? 'active' : 'rejected';
+        
+        if ($this->postRepository->changePostStatus($postId, $lastUpdated, $status)) {
+            $response = "Post " . $action . "ed successfully.";
+            $statusCode = 200;
+        } else {
+            $response = "Sorry, the post has been modified since you last viewed it. Please refresh the content and try your changes again.";
+            $statusCode = 400;
+        }
+        
+        http_response_code($statusCode);
+        echo json_encode(['message' => $response]);
+    }    
+
     public function getPostLikeStatus(int $postId): void {
         $userId = Session::get('user')['id'];
         $isLiked = false;

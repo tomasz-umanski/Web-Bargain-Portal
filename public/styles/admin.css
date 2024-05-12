@@ -1,0 +1,24 @@
+.content{
+    margin-top: var(--navbar-height);
+}
+.content-item-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px;
+}
+.approve-post,
+.reject-post {
+    margin-left: 10px;
+    width: 7em;
+}
+.approve-post{
+    color: white;
+    background-color: green;
+    border-color: green;
+}
+.reject-post{
+    color: white;
+    background-color: red;
+    border-color: red;
+}

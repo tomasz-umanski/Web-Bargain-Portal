@@ -66,10 +66,10 @@ function createPost(post) {
     description.textContent = post.description;
 
     const currentPrice = clone.querySelector(".content-current-price");
-    currentPrice.textContent = post.newPrice;
+    currentPrice.textContent = post.newPrice + "zł";
 
     const oldPrice = clone.querySelector(".content-old-price");
-    oldPrice.textContent = post.oldPrice;
+    oldPrice.textContent = post.oldPrice + "zł";
 
     const deliveryPrice = clone.querySelector(".content-item-delivery-price span:last-child");
     deliveryPrice.textContent = post.deliveryPrice;

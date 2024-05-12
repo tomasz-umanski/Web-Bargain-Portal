@@ -15,6 +15,7 @@ class PostDto implements \JsonSerializable {
     private $userName;
     private $categoryName;
     private $status;
+    private $lastUpdated;
 
     public function __construct(
         $id,
@@ -30,7 +31,8 @@ class PostDto implements \JsonSerializable {
         $endDate,
         $userName,
         $categoryName,
-        $status
+        $status,
+        $lastUpdated
     ) {
         $this->id = $id;
         $this->title = $title;
@@ -46,6 +48,7 @@ class PostDto implements \JsonSerializable {
         $this->userName = $userName;
         $this->categoryName = $categoryName;
         $this->status = $status;
+        $this->lastUpdated = $lastUpdated;
     }
 
     public function getId() {
@@ -104,6 +107,10 @@ class PostDto implements \JsonSerializable {
         return $this->status;
     }
 
+    public function getlastUpdated() {
+        return $this->lastUpdated;
+    }
+
     private function toDiffDateString($dateString): string {
         $date = new DateTime($dateString);
         $currentDate = new DateTime();
@@ -121,7 +128,7 @@ class PostDto implements \JsonSerializable {
     
 
     private function determineDeliveryPriceString($deliveryPrice): string {
-        return ($deliveryPrice == 0) ? 'Free delivery' : $deliveryPrice . ' zł';
+        return ($deliveryPrice == 0) ? 'Free delivery' : $deliveryPrice . 'zł';
     }
 
     public function jsonSerialize() {

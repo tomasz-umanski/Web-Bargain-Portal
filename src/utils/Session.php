@@ -6,6 +6,11 @@ class Session {
         return isset($_SESSION[$key]);
     }
 
+    public static function userHasRole($role) {
+        $user = self::get('user');
+        return isset($user['role']) && $user['role'] === $role;
+    }
+
     public static function put($key, $value) {
         $_SESSION[$key] = $value;
     }
@@ -30,7 +35,8 @@ class Session {
         self::put('user', [
             'id' => $user->getId(),
             'email' => $user->getEmail(),
-            'username' => $user->getUserName()
+            'username' => $user->getUserName(),
+            'role' => $user->getRole(),
         ]);
         session_regenerate_id(true);
     }

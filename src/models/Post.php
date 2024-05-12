@@ -10,7 +10,6 @@ class Post {
     private $likesCount;
     private $offerUrl;
     private $imageUrl;
-    private $creationDate;
     private $endDate;
     private $userId;
     private $categoryId;
@@ -26,7 +25,6 @@ class Post {
         $likesCount, 
         $offerUrl, 
         $imageUrl, 
-        $creationDate, 
         $endDate, 
         $userId, 
         $categoryId, 
@@ -41,7 +39,6 @@ class Post {
         $this->likesCount = $likesCount;
         $this->offerUrl = $offerUrl;
         $this->imageUrl = $imageUrl;
-        $this->creationDate = $creationDate;
         $this->endDate = $endDate;
         $this->userId = $userId;
         $this->categoryId = $categoryId;
@@ -82,10 +79,6 @@ class Post {
 
     public function getImageUrl() {
         return $this->imageUrl;
-    }
-
-    public function getCreationDate() {
-        return $this->creationDate;
     }
 
     public function getEndDate() {

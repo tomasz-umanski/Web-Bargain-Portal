@@ -6,6 +6,18 @@ require_once __DIR__ . '/../models/PostDto.php';
 
 class PostRepository extends Repository {
 
+    public function getPostsToApprove() {
+        $query = "
+            SELECT p.*, u.user_name, c.name AS category_name
+            FROM post p
+            JOIN users u ON p.user_id = u.id
+            JOIN category c ON p.category_id = c.id
+            WHERE p.end_date > NOW() AND p.status = 'pending'
+            ORDER BY p.likes_count DESC;
+        ";
+        return $this->fetchPostsByQuery($query);
+    }
+
     public function createPost(Post $post) : void {
         $statement = $this->database->connect()->prepare('
             INSERT INTO public.post (
@@ -17,13 +29,12 @@ class PostRepository extends Repository {
                 likes_count, 
                 offer_url, 
                 image_url, 
-                creation_date, 
                 end_date, 
                 user_id, 
                 category_id, 
                 status
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ');
 
         $statement->execute([
@@ -35,7 +46,6 @@ class PostRepository extends Repository {
             $post->getLikesCount(),
             $post->getOfferUrl(),
             $post->getImageUrl(),
-            $post->getCreationDate()->format('Y-m-d H:i:s'),
             $post->getEndDate()->format('Y-m-d H:i:s'),
             $post->getUserId(),
             $post->getCategoryId(),
@@ -139,6 +149,23 @@ class PostRepository extends Repository {
     
         return $this->getPostFavouriteStatus($postId, $userId) ? "favourited" : "unfavourited";
     }
+
+    public function changePostStatus(int $postId, string $lastUpdated, string $status): bool {
+        $pdo = $this->database->connect();
+        
+        $stmt = $pdo->prepare("
+            SELECT update_post_status(:post_id, :last_updated, :status) AS result
+        ");
+        $stmt->bindParam(':post_id', $postId, PDO::PARAM_INT);
+        $stmt->bindParam(':last_updated', $lastUpdated, PDO::PARAM_STR);
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return (bool)$result['result'];
+    }
+    
     
     public function getPostFavouriteStatus(int $postId, string $userId): bool {
         $pdo = $this->database->connect();
@@ -232,7 +259,8 @@ class PostRepository extends Repository {
             $post['end_date'],
             $post['user_name'],
             $post['category_name'],
-            $post['status']
+            $post['status'],
+            $post['last_updated']
         );
     }
 }

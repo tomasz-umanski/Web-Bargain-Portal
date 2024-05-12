@@ -31,15 +31,6 @@ $router->get('getPostLikeStatus', 'ContentController');
 $router->post('togglePostFavourite', 'ContentController', 'auth');
 $router->get('getPostFavouriteStatus', 'ContentController');
 
-// $router->get('favourites', 'FavouritesController','auth')->only('auth');
-// $router->get('favouriteSearches', 'FavouritesController')->only('auth');
-// $router->get('favouriteDeals', 'FavouritesController')->only('auth');
-
-// $router->get('newPost', 'NewPostController')->only('auth');
-// $router->post('createPost', 'NewPostController')->only('auth');
-
-// $router->get('signIn', 'AuthController')->only('guest');
-// $router->post('login', 'AuthController')->only('guest');
-// $router->get('signUp', 'AuthController')->only('guest');
-// $router->post('register', 'AuthController')->only('guest');
-// $router->delete('logout', 'AuthController')->only('auth');
+$router->get('adminApproval', 'AdminPanelController', 'admin');
+$router->post('approvePost', 'AdminPanelController', 'admin');
+$router->post('rejectPost', 'AdminPanelController', 'admin');

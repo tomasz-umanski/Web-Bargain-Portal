@@ -1,11 +1,11 @@
 <?php if (empty($posts)) : ?>
         <div class="content not-found">
-            <span>Nothing found...</span>
+            <span>No posts for approval...</span>
         </div>
 <?php else : ?>
     <div class="content-items">
         <?php foreach ($posts as $post) : ?>
-            <div class="content-item" id="<?= $post->getId(); ?>">
+            <div class="content-item" id="<?= $post->getId(); ?>" data-last-updated="<?= $post->getLastUpdated() ?>">
                 <div class="content-item-grid">
                     <div class="content-image">
                         <div class="crop">
@@ -43,18 +43,19 @@
                         <?= $post->getDescription(); ?>
                     </div>
                     <div class="content-item-actions">
-                        <button class="content-button content-like">
-                            <span><i class="bi bi-heart"></i></span>
-                            <p> <?= $post->getLikesCount(); ?> </p>
-                        </button>
-                        <button class="content-button content-favourite">
-                            <span><i class="bi bi-star"></i></span>
-                        </button>
                         <a class="content-button content-catchdeal" target="_blank" href="<?= $post->getOfferUrl(); ?>">
                             Catch the deal
                             <span><i class="bi bi-link"></i></span>
                         </a>
                     </div>
+                </div>
+                <div class="content-item-buttons">
+                    <button class="content-button approve-post">
+                        Approve
+                    </button>
+                    <button class="content-button reject-post">
+                        Reject
+                    </button>
                 </div>
             </div>
         <?php endforeach; ?>

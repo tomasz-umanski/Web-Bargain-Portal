@@ -10,15 +10,17 @@ class UserRepository extends Repository {
             $user['id'],
             $user['user_name'],
             $user['email'],
-            $user['password']
+            $user['password'],
+            $user['role_name']
         );
     }
 
     public function getUser(string $email): ?User
     {
         $stmt = $this->database->connect()->prepare('
-            SELECT * 
-            FROM users u 
+            SELECT u.*, ur.name AS role_name
+            FROM users u
+            JOIN user_roles ur ON ur.id = u.role_id
             WHERE email = :email OR user_name = :email;
         ');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -57,17 +59,20 @@ class UserRepository extends Repository {
 
     public function createUser(User $user): string {
         $stmt = $this->database->connect()->prepare('
-            INSERT INTO users (user_name, email, password)
-            VALUES (?, ?, ?)
+            INSERT INTO users (user_name, email, password, role_id)
+            SELECT ?, ?, ?, id
+            FROM user_roles
+            WHERE name = ?
             RETURNING id;
         ');
-
+    
         $stmt->execute([
             $user->getUserName(),
             $user->getEmail(),
-            $user->getPassword()
+            $user->getPassword(),
+            'client'
         ]);
-
+    
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
         return $data['id'];
     }
