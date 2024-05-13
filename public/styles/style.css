@@ -322,8 +322,16 @@ body{
     flex-direction: row;
     align-items: center;
     flex-wrap: nowrap;
+    white-space: nowrap;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
+}
+.content-user-data::-webkit-scrollbar {
+    display: none;
+}  
+.content-user-data{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 .content-user-data > * {
     margin-right: 10px; 
@@ -376,6 +384,14 @@ body{
     font-size: 26px;
     font-weight: 500;
     white-space: nowrap;
+    overflow: auto;
+}
+.content-item-title::-webkit-scrollbar {
+    display: none;
+}  
+.content-item-title {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 .content-item-price {
     display: flex;
@@ -384,6 +400,14 @@ body{
     align-items: center;
     flex-wrap: nowrap;
     white-space: nowrap;
+    overflow: auto;
+}
+.content-item-price::-webkit-scrollbar {
+    display: none;
+}  
+.content-item-price{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 .content-item-price *{
     font-size: 20px;
@@ -401,12 +425,19 @@ body{
 }
 .content-item-description{
     position: relative;
-    overflow: hidden;
     grid-area: 2 / 2 / 4 / 5;
     grid-column: span 3;
     font-size: 16px;
     text-align: justify;
     margin-top: 10px;
+    overflow: auto;
+}
+.content-item-description::-webkit-scrollbar {
+    display: none;
+}  
+.content-item-description{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 .content-item-description:after {
     content: '';
@@ -599,7 +630,6 @@ footer {
         display: flex;
         flex-wrap: nowrap;
         position: relative;
-        overflow: hidden;
     }
     .content-user-data * {
         font-size: 14px;

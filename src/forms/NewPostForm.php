@@ -21,8 +21,8 @@ class NewPostForm extends Form {
     private function validateUrl($url) {
         if (!Validator::string($url)) {
             $this->errors['url'] = 'Url is required.';
-        } else if (!Validator::string($url, 1, 200)) {
-            $this->errors['url'] = 'Url should not exceed 200 characters.';
+        } else if (!Validator::string($url, 1, 500)) {
+            $this->errors['url'] = 'Url should not exceed 500 characters.';
         } else if (!Validator::url($url)) {
             $this->errors['url'] = 'Provide a valid url.';
         }
